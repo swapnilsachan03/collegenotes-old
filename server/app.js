@@ -1,10 +1,10 @@
 import express from "express";
-import { config } from "dotenv"; 
+import dotenv from "dotenv"; 
 import ErrorMiddleware from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-config({
+dotenv.config({
   path: "./config/config.env"
 })
 const app = express();

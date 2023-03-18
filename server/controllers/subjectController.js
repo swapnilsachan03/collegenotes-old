@@ -9,9 +9,9 @@ import { deleteFile, generateFileName, getObjectSignedUrl, uploadFile } from "..
 export const getAllSubjects = catchAsyncError(async (req, res, next) => {
   const name = req.query.search || "";
   const degree = req.query.degree || "";
-  const year = req.query.year;
+  const year = req.query.year || "";
 
-  let query = {
+  const query = {
     title: {
       $regex: name,
       $options: "i"
@@ -19,24 +19,19 @@ export const getAllSubjects = catchAsyncError(async (req, res, next) => {
     degree: {
       $regex: degree,
       $options: "i",
+    },
+    year: {
+      $regex: year,
+      $options: "i",
     }
   }
 
-  if(year) {
-    query = {
-      title: {
-        $regex: name,
-        $options: "i"
-      },
-      degree: {
-        $regex: degree,
-        $options: "i",
-      },
-      "year": year
-    }
-  }
+  const subjects = await Subject.find(query).select(["-seoDescription", "-seoKeywords", "-lastUpdated", "-notes", "-poster", "-beforeNotesContent", "-afterNotesContent"]).limit(15);
 
-  const subjects = await Subject.find(query).select(["-seoDescription", "-seoKeywords", "-lastUpdated", "-notes", "-poster", "-beforeNotesContent", "-afterNotesContent"]);
+  subjects.map(async (subject) => {
+    subject.icon.url = await getObjectSignedUrl(subject.icon.fileName);
+    await subject.save();
+  })
 
   res.status(200).json({
     success: true,

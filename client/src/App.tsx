@@ -35,19 +35,19 @@ function App() {
     dispatch(getUser() as unknown as AnyAction);
   }, [dispatch])
   
-  const { isAuthenticated, user, loading, message, error } = useSelector((state: any) => state.auth);
+  const { isAuthenticated, user, loading, message } = useSelector((state: any) => state.auth);
   
   useEffect(() => {
-    if(error) {
-      toast.error(error)
-      dispatch({ type: "clearError" });
-    }
+    // if(error) {
+    //   toast.error(error)
+    //   dispatch({ type: "clearError" });
+    // }
 
     if(message) {
       toast.success(message)
       dispatch({ type: "clearMessage" });
     }
-  }, [dispatch, error, message])
+  }, [dispatch, message])
   
   return (
     <Router>

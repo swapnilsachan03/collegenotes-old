@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changePassword } from '../../redux/actions/profile';
 
 const ChangePassword = () => {
+  document.title = "Change Password - CollegeNotes";
+  
   const [oldPassword, setOldPassword] = useState<string>();
   const [newPassword, setNewPassword] = useState<string>();
 

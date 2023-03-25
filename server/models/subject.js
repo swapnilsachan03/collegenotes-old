@@ -31,6 +31,7 @@ const schema = new mongoose.Schema({
 
   id: {
     type: String,
+    unique: true,
     required: true,
     minLength: [5, "Minimum 5 keyword ID required"],
     maxLength: [50, "Maximum 50 keyword ID allowed"],
@@ -80,10 +81,8 @@ const schema = new mongoose.Schema({
 
   notes: [
     {
-      _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Notes"
-      }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Notes"
     }
   ],
 

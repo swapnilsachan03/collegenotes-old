@@ -42,7 +42,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
             display={["none", "none", "none", "flex", "flex"]}
           >
             <Link to={"/"} className={styles.navbarLinks}>Home</Link>
-            <Link to={"/subjects"} className={styles.navbarLinks}>Subjects</Link>
+            <a href={"/subjects"} className={styles.navbarLinks}>Subjects</a>
             <Link to={"/contribute"} className={styles.navbarLinks}>Contribute</Link>
             <Link to={"/about"} className={styles.navbarLinks}>About</Link>
           </Flex>
@@ -53,7 +53,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
           >
             {isAuthenticated ?
               (<>
-                <Link to="/user/profile">
+                <a href="/user/profile">
                   <Button
                     size={"sm"}
                     colorScheme={"teal"}
@@ -61,7 +61,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
                   >
                     Profile
                   </Button>
-                </Link>
+                </a>
 
                 <Button
                   size={"sm"}

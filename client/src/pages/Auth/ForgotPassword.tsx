@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword } from '../../redux/actions/profile';
 
 const ForgotPassword = () => {
+  document.title = "CollegeNotes Account Recovery";
   const [email, setEmail] = useState<string>();
 
   const { loading, error, message } = useSelector((state: any) => state.profile);

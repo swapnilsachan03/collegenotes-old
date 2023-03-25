@@ -1,5 +1,6 @@
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import { Notes } from "../models/notes.js";
+import { Stats } from "../models/stats.js";
 import { Subject } from "../models/subject.js"
 import ErrorHandler from "../utils/errorHandler.js";
 import { deleteFile, generateFileName, getObjectSignedUrl, uploadFile } from "../utils/s3.js";
@@ -40,14 +41,20 @@ export const getAllSubjects = catchAsyncError(async (req, res, next) => {
 })
 
 export const getSubjectContent = catchAsyncError(async (req, res, next) => {
-  const subject = await Subject.findById(req.params._id);
-
+  const subject = await Subject.findOne({id: req.params.id}).populate("notes");
+  
   if(!subject) {
-    return next(new ErrorHandler("Invalid course ID!", 404))
+    return next(new ErrorHandler("Invalid subject ID!", 404))
   }
-
+  
+  subject.poster.url = await getObjectSignedUrl(subject.poster.fileName);
+  subject.icon.url = await getObjectSignedUrl(subject.icon.fileName);
   subject.views += 1;
   await subject.save();
+
+  const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+  stats[0].views += 1;
+  await stats[0].save();
 
   res
     .status(200)
@@ -58,16 +65,19 @@ export const getSubjectContent = catchAsyncError(async (req, res, next) => {
 })
 
 export const getNotes = catchAsyncError(async (req, res, next) => {
-  const notes = await Notes.findById(req.params._id);
-
+  const notes = await Notes.findOne({id: req.params.id});
+  
   if(!notes) {
-    return next(new ErrorHandler("Invalid ID or notes not found", 404))
+    return next(new ErrorHandler("Invalid notes ID.", 404))
   }
-
-  notes.views += 1;
+  
   notes.document.url = await getObjectSignedUrl(notes.document.documentKey);
-
+  notes.views += 1;
   await notes.save();
+  
+  const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+  stats[0].views += 1;
+  await stats[0].save();
 
   res
     .status(200)
@@ -133,7 +143,7 @@ export const addNotes = catchAsyncError(async (req, res, next) => {
     ))
   }
 
-  if(!title || !description || !id || !institution || !document) {
+  if(!title || !id || !institution || !document) {
     return next(new ErrorHandler("Please enter all fields", 400));
   }
 
@@ -142,6 +152,7 @@ export const addNotes = catchAsyncError(async (req, res, next) => {
 
   await Notes.create ({
     title,
+    subject: subject.title,
     description,
     id,
     contributor,
@@ -152,10 +163,7 @@ export const addNotes = catchAsyncError(async (req, res, next) => {
     },
   })
   .then(async (result) => {
-    subject.notes.push({
-      _id: result._id,
-    })
-
+    subject.notes.push(result._id);
     subject.numOfNotes = subject.notes.length;
     await subject.save();
   })
@@ -170,7 +178,7 @@ export const addNotes = catchAsyncError(async (req, res, next) => {
 
 export const deleteNotes = catchAsyncError(async (req, res, next) => {
   const { subjectID, notesID } = req.query;
-  
+
   const subject = await Subject.findById(subjectID);
   const notes = await Notes.findById(notesID);
 
@@ -181,8 +189,8 @@ export const deleteNotes = catchAsyncError(async (req, res, next) => {
   await deleteFile(notes.document.documentKey);
 
   const notesArray = subject.notes.filter((element) => {
-    if(element._id.toString() !== notesID) {
-      return doc;
+    if(element.toString() !== notesID) {
+      return element;
     }
   })
 
@@ -279,4 +287,20 @@ export const deleteSubject = catchAsyncError(async (req, res, next) => {
       success: true,
       message: "Subject deleted successfully."
     })
+})
+
+Subject.watch().on("change", async () => {
+  const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+  stats[0].totalSubejcts = await Subject.countDocuments();
+  stats[0].createdAt = Date.now();
+
+  await stats[0].save();
+})
+
+Notes.watch().on("change", async () => {
+  const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+  stats[0].totalNotes = await Notes.countDocuments();
+  stats[0].createdAt = Date.now();
+
+  await stats[0].save();
 })

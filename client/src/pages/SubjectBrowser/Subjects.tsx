@@ -4,9 +4,11 @@ import { toast } from "react-hot-toast";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import SubjectCard from "../../components/SubjectCard";
-import { getSubjects } from "../../redux/actions/subject";
+import { getAllSubjects } from "../../redux/actions/subject";
 
 const Subjects = () => {
+  document.title = "CollegeNotes - Subject Browser";
+  
   const [keywords, setKeywords] = useState<string>("");
   const [degree, setDegree] = useState<string>("");
   const [year, setYear] = useState<string>("");
@@ -18,7 +20,7 @@ const Subjects = () => {
   const { subjects, error } = useSelector((state: any) => state.subjects);
   
   useEffect(() => {
-    dispatch(getSubjects(keywords, degree, year) as any);
+    dispatch(getAllSubjects(keywords, degree, year) as any);
     
     if(error) {
       toast.error(error);
@@ -112,7 +114,7 @@ const Subjects = () => {
       <SimpleGrid
         minChildWidth={["16.5em", "16.5em", "16.5em", "20em", "20em"]}
         spacing={"3"}
-        justifyContent={"center"}
+        justifyItems={"center"}
         marginTop={["8", "12"]}
       >
         {
@@ -121,6 +123,7 @@ const Subjects = () => {
               return (
                 <SubjectCard
                   key={index}
+                  _id={subject._id}
                   title={subject.title}
                   description={subject.description}
                   views={subject.views}
@@ -132,7 +135,14 @@ const Subjects = () => {
               )
             })
           ) : (
-            <Heading size={"lg"}>No subjects found!</Heading>
+            <Heading
+              size={"lg"}
+              fontFamily={"Roboto"}
+              fontStyle={"italic"}
+              opacity={"0.8"}
+              textAlign={"center"}
+              children={"No subjects found!"}
+            />
           )
         }
       </SimpleGrid>

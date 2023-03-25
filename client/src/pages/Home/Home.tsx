@@ -3,6 +3,7 @@ import { Button, Flex, Heading, HStack, Img, ListIcon, ListItem, Text, Unordered
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { RxArrowRight } from 'react-icons/rx';
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const reviews = [
@@ -61,7 +62,7 @@ export default function Home() {
             height={"100%"}
             marginTop={["12","10","12","12","16"]}
             marginBottom={["8","10","12","12","14"]}
-            paddingX={["5","16"]}
+            paddingX={["5", "8", "16"]}
             width={"container.xl"}
           >
             <Flex
@@ -86,13 +87,13 @@ export default function Home() {
                 </Text>
 
                 <HStack>
-                  <a href={"/"}>
+                  <a href={"/subjects"}>
                     <Button size={"sm"} colorScheme={"teal"} children={"All Subjects"} rightIcon={<HiArrowRight />} />
                   </a>
                   
-                  <a href={"/"}>
-                    <Button size={"sm"} colorScheme={"teal"} variant={"outline"} children={"Explore"} />
-                  </a>
+                  <Link to={"/about"}>
+                    <Button size={"sm"} colorScheme={"teal"} variant={"outline"} children={"The Story"} />
+                  </Link>
                 </HStack>
               </VStack>
               
@@ -100,7 +101,7 @@ export default function Home() {
                 width={["300px", "300px", "300px", "400px"]}
                 alignSelf={"center"}
                 objectFit={"scale-down"}
-                src={"/home-hero-image.png"}
+                src={"/images/home-hero-image.png"}
               />
             </Flex>
           </Flex>
@@ -116,17 +117,17 @@ export default function Home() {
             height={"100%"}
             marginTop={["12","10","12","12","16"]}
             marginBottom={["8","10","12","12","14"]}
-            paddingX={["5","16"]}
+            paddingX={["5", "8", "16"]}
             width={"container.xl"}
-            gap={"5em"}
-            direction={["column-reverse", "column-reverse", "row"]}
+            gap={["2em", "2em", "5em"]}
+            direction={["column", "column", "row"]}
             color={"white"}
           >
             <Img
-              width={["300px", "300px", "300px", "500px"]}
+              width={["full", "400px", "300px", "500px"]}
               alignSelf={"center"}
               objectFit={"scale-down"}
-              src={"/upcoming-features-illustration.png"}
+              src={"/images/upcoming-features-illustration.png"}
             />
             
             <VStack alignItems={"flex-start"} justifyContent={"center"}>
@@ -170,9 +171,9 @@ export default function Home() {
             width={"container.xl"}
           >
             <Flex
-              marginX={["5","16"]}
+              marginX={["5", "8", "16"]}
               gap={["3em", "3em", "1em", "6em", "9em"]}
-              direction={["column-reverse", "column-reverse", "row"]}
+              direction={["column", "column", "row"]}
             >
               <VStack
                 gap={"8"}

@@ -1,5 +1,6 @@
-import { Avatar, Flex, Heading, Stack, Text, VStack } from '@chakra-ui/react'
+import { Avatar, Flex, Heading, ListIcon, ListItem, Stack, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import React from 'react'
+import { RxArrowRight } from 'react-icons/rx'
 
 const about = () => {
 
@@ -32,7 +33,7 @@ const about = () => {
         width={["container.md",  "container.md", "container.md", "900px"]}
       >
         <VStack
-          gap={"7"}
+          gap={"50px"}
           width={"100%"}
           paddingBottom={"8"}
           borderBottom={"1px solid lightgray"}
@@ -50,7 +51,8 @@ const about = () => {
             >
               <Heading
                 size={"sm"}
-                children={"About Us"}
+                fontFamily={"Roboto"}
+                children={"About CollegeNotes"}
                 paddingBottom={"2px"}
                 borderBottom={"2px solid"}
               />
@@ -58,7 +60,11 @@ const about = () => {
 
             <VStack width={["", "", "75%"]}>
               <Text fontFamily={"Inter"} textAlign={"justify"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tincidunt vitae semper quis lectus nulla. Lobortis mattis aliquam faucibus purus. Feugiat pretium nibh ipsum consequat nisl vel. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Venenatis lectus magna fringilla urna porttitor rhoncus dolor. Ipsum consequat nisl vel pretium lectus quam id leo. Sodales ut eu sem integer. Scelerisque purus semper eget duis at tellus. Egestas integer eget aliquet nibh praesent tristique. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Sagittis id consectetur purus ut faucibus. Arcu dictum varius duis at consectetur lorem donec. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Pellentesque habitant morbi tristique senectus et netus et. Quam vulputate dignissim suspendisse in. Nulla pellentesque dignissim enim sit amet venenatis. Ultrices vitae auctor eu augue ut.
+                CollegeNotes began with a simple idea of sharing the discrete mathematics notes that I was making during the third semester of my college. At that time, I didn't know much about development, so I made a simple HTML and CSS powered static website by linking a few webpages, made it live and called it a day. But it was the time when that simple website got immense traffic and positive response that I understood the potential of that idea. I was overwhelmed by the requests for more content that I was getting from my friends and other people. So I decided to make it a full-fledged website and take it on as a full-time side project.<br/><br/>
+                
+                Three months later, I started working on it and developed it end-to-end. I added a lot of features on the admin as well as the client side (such as dark and light themes, a search bar, an authentication system, features for favoriting subjects and bookmarking notes for the users and interactive users, subject and notes management system on the admin side). I also tried to make the UI more minimal and user-friendly.<br/><br/>
+                
+                Till now only I have been working on it, but I am planning to make it a community-driven project and make it a platform for students to share their notes and other study materials. I am also planning to add a lot of features to this website in the future, and maybe roll out mobile apps for better accessibility to the students. Any inputs or suggestions are always welcomed through my social media channels.
               </Text>
             </VStack>
           </Flex>
@@ -75,6 +81,7 @@ const about = () => {
             >
               <Heading
                 size={"sm"}
+                fontFamily={"Roboto"}
                 children={"Tech Stack"}
                 paddingBottom={"2px"}
                 borderBottom={"2px solid"}
@@ -83,7 +90,34 @@ const about = () => {
 
             <VStack width={["", "", "75%"]}>
               <Text fontFamily={"Inter"} textAlign={"justify"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tincidunt vitae semper quis lectus nulla. Lobortis mattis aliquam faucibus purus. Feugiat pretium nibh ipsum consequat nisl vel. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Venenatis lectus magna fringilla urna porttitor rhoncus dolor. Ipsum consequat nisl vel pretium lectus quam id leo.
+                When I started out with the development of this website, I planned on using NextJS and Tailwind CSS for the frontend and NodeJS for the backend. But I didn't know much about these technologies at that time, so as I started moving forward, I realized that I was making a lot of mistakes and the code was getting very messy. Owing to that, I made changes to the frameworks and libraries that I was going to use and settled with this tech stack: <br/><br/>
+
+                <UnorderedList listStyleType={"none"} spacing={"1"} marginInlineStart={"0"}>
+                  <ListItem>
+                    <ListIcon as={RxArrowRight} />
+                    ReactJS, React Router for frontend development
+                  </ListItem>
+                  
+                  <ListItem>
+                    <ListIcon as={RxArrowRight} />
+                    Chakra UI for styling
+                  </ListItem>
+                  
+                  <ListItem>
+                    <ListIcon as={RxArrowRight} />
+                    ExpressJS with NodeJS for backend development
+                  </ListItem>
+                  
+                  <ListItem>
+                    <ListIcon as={RxArrowRight} />
+                    MongoDB with MOngoose for database management
+                  </ListItem>
+                  
+                  <ListItem>
+                    <ListIcon as={RxArrowRight} />
+                    Various JS libraries such as React Quill, JWT, Bcrypt, Sharp etc.
+                  </ListItem>
+                </UnorderedList>
               </Text>
             </VStack>
           </Flex>
@@ -96,24 +130,43 @@ const about = () => {
           <VStack alignItems={"flex-start"} width={["", "", "70%"]}>
             <Heading
               size={"sm"}
+              fontFamily={"Roboto"}
               children={"Message from the founder"}
               paddingBottom={"2px"}
               borderBottom={"2px solid"}
             />
 
+            <VStack
+              width={["", "", "30%"]}
+              display={["flex", "flex", "none", "none", "none"]}
+              alignSelf={"center"}
+              paddingTop={"4"}
+              fontSize={"sm"}
+              textColor={"gray.500"}
+              fontFamily={"Inter"}
+            >
+              <Avatar
+                size={"2xl"}
+                name={"Swapnil Sachan"}
+              />
+
+            <p style={{marginTop: "15px"}}>Swapnil Sachan</p>
+            <p style={{marginTop: "1px"}}>Creator, CollegeNotes</p>
+          </VStack>
+
             <Text fontFamily={"Inter"} textAlign={"justify"} paddingTop={"3"}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tincidunt vitae semper quis lectus nulla. Lobortis mattis aliquam faucibus purus. Feugiat pretium nibh ipsum consequat nisl vel. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Venenatis lectus magna fringilla urna porttitor rhoncus dolor.
+              The development of this website has required a lot of efforts and cost me a whole two months. The constant maintenance efforts are even more costly and tough to carry on with. If you are getting benefitted by this platform and want to support me and this website, you can do so by donating to me through the donations page of this website only. Any amount of donation is appreciated and will be used to maintain this website and to add more features to it. Thank you for your support!
             </Text>
           </VStack>
           
           <VStack
             width={["", "", "30%"]}
+            display={["none", "none", "flex"]}
             alignItems={"center"}
             justifyContent={"center"}
             fontSize={"sm"}
             textColor={"gray.500"}
             fontFamily={"Inter"}
-            marginBottom={["9", "9", ""]}
           >
             <Avatar
               size={"2xl"}
@@ -125,9 +178,9 @@ const about = () => {
           </VStack>
         </Flex>
 
-        <VStack fontFamily={"Inter"} paddingTop={["10", "16"]} fontSize={"13px"}>
+        <VStack fontFamily={"Inter"} paddingTop={["9", "14"]} fontSize={"13px"}>
           <p>Made with ❤️ in TypeScript</p>
-          <p style={{marginTop: "2px"}}>All payments are secured by Razorpay</p>
+          <p style={{marginTop: "2px"}}>Hosted on Vercel, stored on Amazon S3</p>
         </VStack>
       </Stack>
     </Flex>

@@ -93,3 +93,37 @@ export const resetPassword = (token, password) => async (dispatch) => {
     dispatch({ type: "resetPasswordFail", payload: error.response.data.message });
   }
 }
+
+export const unfavoriteSubject = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "unfavoriteSubjectRequest" });
+    
+    const { data } = await axios.delete(`${server}/favorites?id=${id}`, {
+      headers: {},
+      withCredentials: true,
+    });
+
+    dispatch({ type: "unfavoriteSubjectSuccess", payload: data.message });
+  }
+
+  catch (error) {
+    dispatch({ type: "unfavoriteSubjectFail", payload: error.response.data.message });
+  }
+}
+
+export const unBookmarkNotes = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "unBookmarkNotesRequest" });
+    
+    const { data } = await axios.delete(`${server}/bookmarks?id=${id}`, {
+      headers: {},
+      withCredentials: true,
+    });
+
+    dispatch({ type: "unBookmarkNotesSuccess", payload: data.message });
+  }
+
+  catch (error) {
+    dispatch({ type: "unBookmarkNotesFail", payload: error.response.data.message });
+  }
+}

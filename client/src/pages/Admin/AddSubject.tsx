@@ -1,26 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import 'react-quill/dist/quill.snow.css';
-import { Button, Flex, Heading, HStack, Image, Input, Select, Stack, Textarea, useDisclosure, VStack } from '@chakra-ui/react';
+import { Button, Flex, Heading, HStack, Image, Input, Select, Stack, Textarea, VStack } from '@chakra-ui/react';
 import { RiDraftFill, RiImageAddFill } from 'react-icons/ri';
 import { MdPublish } from 'react-icons/md';
 import AdminNav from '../../components/AdminNav';
-// import NotesModal from '../../components/NotesModal';
 import { HiPlus } from 'react-icons/hi';
 import ReactQuill from 'react-quill';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSubject } from '../../redux/actions/admin';
+import toast from 'react-hot-toast';
 
 const AddSubject = () => {
-  const [beforeNotes, setBeforeNotes] = useState("");
-  const [afterNotes, setAfterNotes] = useState("");
-  const [subjectName, setSubjectName] = useState("");
-  const [subjectID, setSubjectID] = useState("");
-  const [description, setDescription] = useState("");
-  const [keywords, setKeywords] = useState("");
-  const [poster, setPoster] = useState<File>();
-  const [posterPrev, setPosterPrev] = useState("");
-  const [icon, setIcon] = useState<File>();
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+  document.title = "Add Subject - CollegeNotes";
+  
   const modules = {
     toolbar: [
       [{ header: '1' }, { header: '2' }, { header: '3' }],
@@ -40,6 +32,53 @@ const AddSubject = () => {
       matchVisual: false,
     },
   }
+
+  const [beforeNotes, setBeforeNotes] = useState("");
+  const [afterNotes, setAfterNotes] = useState("");
+  const [subjectName, setSubjectName] = useState("");
+  const [subjectID, setSubjectID] = useState("");
+  const [degree, setDegree] = useState("");
+  const [year, setYear] = useState("");
+  const [description, setDescription] = useState("");
+  const [seoDescription, setSeoDescription] = useState("");
+  const [keywords, setKeywords] = useState("");
+  const [poster, setPoster] = useState<File>();
+  const [posterPrev, setPosterPrev] = useState("");
+  const [icon, setIcon] = useState<File>();
+
+  const dispatch = useDispatch();
+  const { loading, error, message } = useSelector((state: any) => state.admin);
+
+  const submitHandler = async (event: any) => {
+    event.preventDefault();
+    const myForm = new FormData();
+
+    myForm.append("title", subjectName);
+    myForm.append("description", description);
+    myForm.append("seoDescription", seoDescription);
+    myForm.append("seoKeywords", keywords);
+    myForm.append("id", subjectID);
+    myForm.append("degree", degree);
+    myForm.append("year", year);
+    myForm.append("beforeNotesContent", beforeNotes);
+    myForm.append("afterNotesContent", afterNotes);
+    myForm.append("poster", poster!);
+    myForm.append("icon", icon!);
+
+    await dispatch(addSubject(myForm) as any);
+  }
+
+  useEffect(() => {
+    if(error) {
+      toast.error(error);
+      dispatch({ type: "clearError" });
+    }
+
+    if(message) {
+      toast.success(message);
+      dispatch({ type: "clearMessage" });
+    }
+  }, [dispatch, error, message])
 
   const changePosterHandler = (event: any) => {
     const file = event.target.files[0];
@@ -63,7 +102,7 @@ const AddSubject = () => {
   }
 
   const degrees = ["Engineering", "BSc", "BBA"];
-  const year = ["First", "Second", "Third"];
+  const years = ["First", "Second", "Third"];
 
   return (
     <>
@@ -90,7 +129,7 @@ const AddSubject = () => {
           textAlign={"center"}
         />
 
-        <form>
+        <form onSubmit={(e: any) => submitHandler(e)}>
           <Flex direction={"column"}>
             
             <HStack marginBottom={"3"}>
@@ -105,7 +144,7 @@ const AddSubject = () => {
               />
 
               <Input
-                id={"actual-btn"}
+                id={"poster-btn"}
                 accept="image/png, image/jpg, image/jpeg"
                 required
                 type={"file"}
@@ -120,14 +159,26 @@ const AddSubject = () => {
                 size={"sm"}
                 leftIcon={<RiImageAddFill/>}
               >
-                <label htmlFor="actual-btn" style={{cursor: "pointer"}}>Poster</label>
+                <label htmlFor="poster-btn" style={{cursor: "pointer"}}>Poster</label>
               </Button>
             </HStack>
 
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Please enter subject description (SEO oriented)"
+              placeholder="Please enter a subject description"
+              marginBottom={"3"}
+              borderRadius={"4px"}
+              resize={"none"}
+              rows={2}
+              focusBorderColor="cyan.500"
+              size={"sm"}
+            />
+
+            <Textarea
+              value={seoDescription}
+              onChange={(e) => setSeoDescription(e.target.value)}
+              placeholder="Please enter a SEO oriented subject description"
               marginBottom={"3"}
               borderRadius={"4px"}
               resize={"none"}
@@ -164,6 +215,7 @@ const AddSubject = () => {
                 placeholder="Degree"
                 variant={"filled"}
                 size={"sm"}
+                onChange={(e) => setDegree(e.target.value)}
                 width={"auto"}
                 borderRadius={"md"}
                 fontWeight={"medium"}
@@ -172,7 +224,7 @@ const AddSubject = () => {
                 {
                   degrees.map((value, index) => {
                     return (
-                      <option key={index} value={index}> {value} </option>
+                      <option key={index} value={value}> {value} </option>
                     )
                   })
                 }
@@ -182,15 +234,16 @@ const AddSubject = () => {
                 placeholder="Year"
                 variant={"filled"}
                 size={"sm"}
+                onChange={(e) => setYear(e.target.value)}
                 width={"auto"}
                 borderRadius={"md"}
                 fontWeight={"medium"}
                 focusBorderColor={"cyan.500"}
               >
                 {
-                  year.map((value, index) => {
+                  years.map((value, index) => {
                     return (
-                      <option key={index} value={index}> {value} </option>
+                      <option key={index} value={value}> {value} </option>
                     )
                   })
                 }
@@ -239,7 +292,7 @@ const AddSubject = () => {
                   Save Draft
                 </Button>
 
-                <Button leftIcon={<MdPublish/>} colorScheme={"cyan"} size={"sm"}>
+                <Button type={"submit"} isLoading={loading} leftIcon={<MdPublish/>} colorScheme={"cyan"} size={"sm"}>
                   Publish
                 </Button>
               </HStack>

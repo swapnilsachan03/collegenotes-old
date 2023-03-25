@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CollegeNotes",
+  "name": "CollegeNotes - A web app for college students",
   "icons": [
     {
       "src": "favicon.ico",

@@ -7,6 +7,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 import { getObjectSignedUrl, generateFileName, uploadFile, deleteFile } from "../utils/s3.js";
 import { sendToken } from "../utils/sendToken.js";
 import { sendEmail } from "../utils/sendEmail.js";
+import { Stats } from "../models/stats.js";
 
 // Authentication & Password Reset -----------------------------------------------------------------------------------------------
 
@@ -149,7 +150,9 @@ export const resetPassword = catchAsyncError(async (req, res, next) => {
 // User Actions ------------------------------------------------------------------------------------------------------------------
 
 export const getMyProfile = catchAsyncError(async (req, res, next) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id)
+    .populate("favoriteSubjects", "_id id title description views numOfNotes")
+    .populate("bookmarkedNotes");
 
   if(user.avatar.imgName) {
     const imgUrl = await getObjectSignedUrl(user.avatar.imgName);
@@ -260,7 +263,7 @@ export const deleteMyProfile = catchAsyncError(async (req, res, next) => {
 
 export const addToBookmarks = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
-  const notes = await Notes.findById(req.params);
+  const notes = await Notes.findById(req.body.id);
   
   if(!notes) {
     return next(new ErrorHandler("Invalid notes ID", 400))
@@ -289,7 +292,7 @@ export const addToBookmarks = catchAsyncError(async (req, res, next) => {
 
 export const removeFromBookmarks = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
-  const notes = await Notes.findById(req.params);
+  const notes = await Notes.findById(req.query.id);
 
   if(!notes) {
     return next(new ErrorHandler("Invalid notes ID", 400))
@@ -314,7 +317,7 @@ export const removeFromBookmarks = catchAsyncError(async (req, res, next) => {
 
 export const addToFavorites = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
-  const subject = await Subject.findById(req.params);
+  const subject = await Subject.findById(req.body.id);
 
   if(!subject) {
     return next(new ErrorHandler("Invalid subject ID", 400))
@@ -343,7 +346,7 @@ export const addToFavorites = catchAsyncError(async (req, res, next) => {
 
 export const removeFromFavorites = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
-  const subject = await Subject.findById(req.params);
+  const subject = await Subject.findById(req.query.id);
 
   if(!subject) {
     return next(new ErrorHandler("Invalid subject ID", 400))
@@ -426,4 +429,11 @@ export const deleteUser = catchAsyncError(async (req, res, next) => {
       success: true,
       message: "User deleted successfully."
     })
+})
+
+User.watch().on("change", async () => {
+  const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+  stats[0].users = await User.countDocuments();
+
+  await stats[0].save();
 })

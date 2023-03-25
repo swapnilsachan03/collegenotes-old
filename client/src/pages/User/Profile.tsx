@@ -1,15 +1,19 @@
-import { Avatar, Box, Button, Container, FormLabel, Heading, HStack, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, VStack } from '@chakra-ui/react';
+import { Avatar, Box, Button, Container, FormLabel, Heading, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, VStack } from '@chakra-ui/react';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
 import { FaUserEdit, FaDonate, FaUserMinus } from 'react-icons/fa';
-import { RiDeleteBin7Fill, RiDashboardFill, RiImageEditFill } from 'react-icons/ri';
+import { RiDashboardFill, RiImageEditFill } from 'react-icons/ri';
 import { BsPersonCheckFill } from 'react-icons/bs';
 import { HiOutlineArrowUpRight } from 'react-icons/hi2';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProfile, updateProfile } from '../../redux/actions/profile';
 import { toast } from 'react-hot-toast';
+import ProfileSubjectCard from '../../components/ProfileSubjectCard';
+import ProfileNotesCard from '../../components/ProfileNotesCard';
 
 const Profile = ({ user }: any) => {
+  document.title = "Member Profile - CollegeNotes";
+  
   const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclosure();
   const {isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose} = useDisclosure();
   const memberSince = new Date(user.createdAt);
@@ -75,42 +79,57 @@ const Profile = ({ user }: any) => {
       </Stack>
 
       <Heading
-        marginY={["5", "9"]}
         marginTop={"9"}
+        marginBottom={"4"}
         fontSize={"24px"}
         fontWeight={"bold"}
         fontFamily={"Inter"}
         children={"Favorite Subjects"}
       />
       { user.favoriteSubjects.length > 0 ? (
-        <Stack
-          flexWrap={"wrap"}
-          direction={["column", "row"]}
-          alignItems={"center"}
-          padding={"4"}
+        <HStack
+          maxWidth={["95vw", "95vw", "container.lg"]}
+          overflowX={"auto"}
+          paddingBottom={"6"}
+          sx={{
+            '::-webkit-scrollbar': {
+              width: '11px',
+              height: 'auto',
+            },
+            
+            '::-webkit-scrollbar-track': {
+              backgroundColor: 'transparent'
+            },
+            
+            '::-webkit-scrollbar-thumb': {
+              backgroundColor: '#8e9bac',
+              borderRadius: '15px',
+              border: '5px solid transparent',
+              backgroundClip: 'content-box',
+            },
+            
+            '::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#718096',
+            }
+          }}
         >
           {
-            user.favoriteSubjects.map((element: any) => {
+            user.favoriteSubjects.map((subject: any, index: number) => {
               return (
-                <VStack width={"48"} margin={"2"} key={element.subject}>
-                  <Image boxSize={"full"} objectFit={"contain"} src={element.poster} />
-
-                  <HStack>
-                    <Link to={`/course/${element.subject}`}>
-                      <Button variant={"ghost"} colorScheme={"yellow"}>
-                        Watch Now
-                      </Button>
-                    </Link>
-
-                    <Button>
-                      <RiDeleteBin7Fill />
-                    </Button>
-                  </HStack>
-                </VStack>
+                <ProfileSubjectCard
+                  key={index}
+                  _id={subject._id}
+                  title={subject.title}
+                  description={subject.description}
+                  views={subject.views}
+                  id={subject.id}
+                  creator={subject.creator}
+                  notesCount={subject.numOfNotes}
+                />
               )
             }
           )}
-        </Stack> ) :
+        </HStack> ) :
       (
         <Text
           children="You haven't marked any subjects as favorite."
@@ -121,41 +140,55 @@ const Profile = ({ user }: any) => {
       )}
       
       <Heading
-        marginY={["5", "7"]}
+        marginTop={"7"}
+        marginBottom={"4"}
         fontSize={"24px"}
         fontWeight={"bold"}
         fontFamily={"Inter"}
         children={"Bookmarked Notes"}
       />
       { user.bookmarkedNotes.length > 0 ? (
-        <Stack
-          flexWrap={"wrap"}
-          direction={["column", "row"]}
-          alignItems={"center"}
-          padding={"4"}
+        <HStack
+          maxWidth={["95vw", "95vw", "container.lg"]}
+          overflowX={"auto"}
+          sx={{
+            '::-webkit-scrollbar': {
+              width: '11px',
+              height: 'auto',
+            },
+            
+            '::-webkit-scrollbar-track': {
+              backgroundColor: 'transparent'
+            },
+            
+            '::-webkit-scrollbar-thumb': {
+              backgroundColor: '#8e9bac',
+              borderRadius: '15px',
+              border: '5px solid transparent',
+              backgroundClip: 'content-box',
+            },
+            
+            '::-webkit-scrollbar-thumb:hover': {
+              backgroundColor: '#718096',
+            }
+          }}
         >
           {
-            user.bookmarkedNotes.map((element: any) => {
+            user.bookmarkedNotes.map((notes: any, index: number) => {
               return (
-                <VStack width={"48"} margin={"2"} key={element.course}>
-                  <Image boxSize={"full"} objectFit={"contain"} src={element.poster} />
-
-                  <HStack>
-                    <Link to={`/course/${element.course}`}>
-                      <Button variant={"ghost"} colorScheme={"yellow"}>
-                        Watch Now
-                      </Button>
-                    </Link>
-
-                    <Button>
-                      <RiDeleteBin7Fill />
-                    </Button>
-                  </HStack>
-                </VStack>
+                <ProfileNotesCard
+                  key={index}
+                  _id={notes._id}
+                  views={notes.views}
+                  title={notes.title}
+                  id={notes.id}
+                  contributor={notes.contributor}
+                  institution={notes.institution}
+                />
               )
             }
           )}
-        </Stack>) :
+        </HStack>) :
       (
         <Text
           children="You haven't bookmarked any notes yet."
@@ -280,7 +313,7 @@ const UpdateProfile = ({user, isEditOpen, onEditClose, onDeleteOpen}: any) => {
                 </Box>
 
                 <Button size={"sm"} variant={"link"} alignSelf={"flex-start"} rightIcon={<HiOutlineArrowUpRight />}>
-                  <Link to={"/user/change_password"} target={"_blank"}>Change password</Link>
+                  <Link to={"/user/change-password"} target={"_blank"}>Change password</Link>
                 </Button>
               </VStack>
           </Container>

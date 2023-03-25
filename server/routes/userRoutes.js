@@ -27,12 +27,12 @@ router.route("/profile")
   .delete(isAuthenticated, deleteMyProfile);
 
 // Add & remove bookmarks
-router.route("/bookmarks/:_id")
+router.route("/bookmarks")
   .post(isAuthenticated, addToBookmarks)
   .delete(isAuthenticated, removeFromBookmarks);
 
 // Add & remove favorites
-router.route("/favorites/:_id")
+router.route("/favorites")
   .post(isAuthenticated, addToFavorites)
   .delete(isAuthenticated, removeFromFavorites);
 

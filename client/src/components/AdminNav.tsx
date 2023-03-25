@@ -16,7 +16,7 @@ const AdminNav = () => {
             <LinkButton text="Dashboard" url="dashboard" active={currRoute.pathname === "/admin/dashboard"} />
             <Text fontSize={"sm"} color={"gray.500"} children={"|"} />
 
-            <LinkButton text="Add Subject" url="add_subject" active={currRoute.pathname === "/admin/add_subject"} />
+            <LinkButton text="Add Subject" url="add-subject" active={currRoute.pathname === "/admin/add-subject"} />
             <Text fontSize={"sm"} color={"gray.500"} children={"|"} />
 
             <LinkButton text="Subjects" url="subjects" active={currRoute.pathname === "/admin/subjects"} />

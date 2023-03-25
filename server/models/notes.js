@@ -8,17 +8,21 @@ const schema = new mongoose.Schema({
     maxLength: [50, "Title must be at max 80 characters long"],
   },
 
+  subject: {
+    type: String,
+    required: true
+  },
+
   description: {
     type: String,
     default: "No description has been provided for these notes.",
-    minLength: [20, "Description must be at least 100 characters long"],
-    maxLength: [200, "Description must be at max 200 characters long"],
+    maxLength: [250, "Description must be at max 250 characters long"],
   },
 
   id: {
     type: String,
     required: true,
-    minLength: [10, "Minimum 5 keyword ID required"],
+    minLength: [5, "Minimum 5 keyword ID required"],
     maxLength: [60, "Maximum 50 keyword ID allowed"],
   },
 
@@ -29,7 +33,7 @@ const schema = new mongoose.Schema({
 
   contributorSocial: {
     type: String,
-    default: `${process.env.FRONTEND_URL}/about`,
+    default: "https://www.collegenotes.co.in/about",
   },
 
   institution: {

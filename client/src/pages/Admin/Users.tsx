@@ -1,44 +1,37 @@
 import { Button, Flex, Heading, HStack, Stack, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import { FaUserMinus } from 'react-icons/fa';
-import AdminNav from "../../components/AdminNav"
+import { useDispatch, useSelector } from 'react-redux';
+import AdminNav from "../../components/AdminNav";
+import { changeRole, deleteUser, getAllUsers } from '../../redux/actions/admin';
 
 const Users = () => {
-  const users = [
-    {
-      _id: "y732y7",
-      name: "Swapnil",
-      role: "admin",
-      subscription: {
-        status: "active"
-      },
-      email: "swapnil@gmail.com"
-    },
-    {
-      _id: "y732y7",
-      name: "Swapnil",
-      role: "admin",
-      subscription: {
-        status: "active"
-      },
-      email: "swapnil@gmail.com"
-    },
-    {
-      _id: "y732y7",
-      name: "Swapnil",
-      role: "admin",
-      subscription: {
-        status: "active"
-      },
-      email: "swapnil@gmail.com"
-    },
-  ];
+  document.title = "Users Manager - CollegeNotes";
+  
+  const dispatch = useDispatch();
+  const { users, loading, error, message } = useSelector((state: any) => state.admin);
+
+  useEffect(() => {
+    dispatch(getAllUsers() as any);
+    
+    if(error) {
+      toast.error(error);
+      dispatch({ type: "clearError"});
+    };
+    
+    if(message) {
+      toast.success(message);
+      dispatch({ type: "clearMessage"});
+    };
+  }, [dispatch, error, message])
 
   const changeRoleHandler = (userId: String) => {
-    console.log(userId);
+    dispatch(changeRole(userId) as any);
   }
 
   const deleteUserHandler = (userId: String) => {
-    console.log(userId);
+    dispatch(deleteUser(userId) as any);
   }
 
   return (
@@ -54,7 +47,7 @@ const Users = () => {
         height={"100%"}
         marginX={["3","3","0","0","0"]}
         marginY={["8","10","12","12"]}
-        width={"container.lg"}
+        width={"container.xl"}
       >
         <Heading
           fontFamily={"Poppins"}
@@ -77,20 +70,20 @@ const Users = () => {
                 <Th>Name</Th>
                 <Th>Email</Th>
                 <Th>Role</Th>
-                <Th>Subscription</Th>
                 <Th isNumeric>Action</Th>
               </Tr>
             </Thead>
 
             <Tbody>
               {
-                users.map((element, index) => {
+                users && users.map((element: any, index: number) => {
                   return (
                     <UserRow
                       key={index}
                       element={element}
                       changeRoleHandler={changeRoleHandler}
                       deleteUserHandler={deleteUserHandler}
+                      loading={loading}
                     />
                   )
                 })
@@ -107,23 +100,22 @@ const Users = () => {
 
 export default Users;
 
-const UserRow = ({element, changeRoleHandler, deleteUserHandler}: any) => {
+const UserRow = ({element, changeRoleHandler, deleteUserHandler, loading}: any) => {
   return (
     <Tr>
       <Td>{element._id}</Td>
       <Td>{element.name}</Td>
       <Td>{element.email}</Td>
       <Td>{element.role}</Td>
-      <Td>{element.subscription.status === "active" ? "Active" : "Not Active"}</Td>
 
       <Td isNumeric>
         <HStack justifyContent={"flex-end"}>
           
-          <Button size={"sm"} variant={"outline"} colorScheme={"cyan"} onClick={() => changeRoleHandler(element._id)}>
+          <Button size={"sm"} variant={"outline"} colorScheme={"cyan"} isLoading={loading} onClick={() => changeRoleHandler(element._id)}>
             Change Role
           </Button>
 
-          <Button size={"sm"} colorScheme={"cyan"} onClick={() => deleteUserHandler(element._id)}>
+          <Button size={"sm"} colorScheme={"cyan"} isLoading={loading} onClick={() => deleteUserHandler(element._id)}>
             <FaUserMinus />
           </Button>
 

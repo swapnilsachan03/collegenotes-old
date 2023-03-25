@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { resetPassword } from '../../redux/actions/profile';
 
 const ResetPassword = () => {
+  document.title = "Reset Password - CollegeNotes";
+
   const [cnfPassword, setCnfPassword] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 

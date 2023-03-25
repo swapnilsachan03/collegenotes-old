@@ -1,6 +1,7 @@
 import { Heading, HStack, Stack, Text, useColorMode, useColorModeValue, VStack } from '@chakra-ui/react';
 import styles from "../../styles/Footer.module.css";
 import { RiLinkedinFill, RiInstagramLine, RiGithubFill } from "react-icons/ri";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const { colorMode } = useColorMode();
@@ -18,9 +19,9 @@ const Footer = () => {
           width={"100%"}
           alignItems={"flex-start"}
         >
-          <a href={"/"}>
+          <Link to={"/"}>
             <Heading size={"lg"} fontFamily={"Roboto Condensed"} children={"CollegeNotes"} />
-          </a>
+          </Link>
         </HStack>
 
         <Stack
@@ -40,15 +41,15 @@ const Footer = () => {
 
             <HStack gap={["0", "10"]}>
               <VStack paddingTop={"3"} alignItems={"flex-start"} width={["50%", "unset"]}>
-                <a href={"/contribute"} className={styles.footerLinks}>Contribute</a>
+                <Link to={"/contribute"} className={styles.footerLinks}>Contribute</Link>
                 <a href={"/subjects"} className={styles.footerLinks}>All Subjects</a>
-                <a href={"/about"} className={styles.footerLinks}>About Us</a>
+                <Link to={"/about"} className={styles.footerLinks}>About Us</Link>
               </VStack>
 
               <VStack paddingTop={"3"} alignItems={"flex-start"} width={["50%", "unset"]}>
-                <a href={"/donate"} className={styles.footerLinks}>Donate</a>
-                <a href={"/"} className={styles.footerLinks}>Tweet This!</a>
-                <a href={"https://old.collegenotes.co.in/"} className={styles.footerLinks}>Old Site</a>
+                <Link to={"/donate"} className={styles.footerLinks}>Donate</Link>
+                <Link to={"/"} className={styles.footerLinks}>Tweet This!</Link>
+                <a href={"https://old.collegenotes.co.in/"} target={"_blank"} rel={"noreferrer"} className={styles.footerLinks}>Old Site</a>
               </VStack>
             </HStack>
           </Stack>

@@ -6,6 +6,8 @@ import { login } from '../../redux/actions/auth';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  document.title = "Login - CollegeNotes";
+  
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const navigate = useNavigate();
@@ -55,7 +57,7 @@ const Login = () => {
           </Box>
           
           <Box marginY={"4"}>
-            <Link to="/auth/forgot_password">
+            <Link to="/auth/forgot-password">
               <Button size={"sm"} variant={"link"}>
                 Forgot password?
               </Button>

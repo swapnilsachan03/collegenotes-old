@@ -5,6 +5,8 @@ import { register } from '../../redux/actions/auth';
 import { fileUploadCSS } from "../../styles/fileUploadCSS";
 
 const Register = () => {
+  document.title = "Register - CollegeNotes";
+  
   const [name, setName] = useState("");
   const [imagePrev, setImagePrev] = useState("");
   const [image, setImage] = useState<File>();

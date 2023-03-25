@@ -26,6 +26,7 @@ import Users from './pages/Admin/Users';
 import NotFound from './components/Layout/NotFound';
 import Loader from './components/Layout/Loader';
 import ChangePassword from './pages/User/ChangePassword';
+import EditSubject from './pages/Admin/EditSubject';
 
 function App() {
   const dispatch = useDispatch();
@@ -91,7 +92,7 @@ function App() {
             </Route>
 
             <Route
-              path="/auth/forgot_password"
+              path="/auth/forgot-password"
               element={
                 <ProtectedRoute isAuthenticated={!isAuthenticated} redirect={"/user/profile"}>
                   <ForgotPassword />
@@ -100,7 +101,7 @@ function App() {
             </Route>
 
             <Route
-              path="/auth/reset_password/:token"
+              path="/auth/reset-password/:token"
               element={
                 <ProtectedRoute isAuthenticated={!isAuthenticated} redirect={"/user/profile"}>
                   <ResetPassword />
@@ -118,7 +119,7 @@ function App() {
             </Route>
             
             <Route
-              path="/user/change_password"
+              path="/user/change-password"
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
                   <ChangePassword />
@@ -140,10 +141,19 @@ function App() {
             </Route>
 
             <Route
-              path="/admin/add_subject"
+              path="/admin/add-subject"
               element={
                 <ProtectedRoute adminRoute={true} isAuthenticated={isAuthenticated} isAdmin={user && user.role === "admin"}>
                   <AddSubject />
+                </ProtectedRoute>
+              }>
+            </Route>
+
+            <Route
+              path="/admin/edit"
+              element={
+                <ProtectedRoute adminRoute={true} isAuthenticated={isAuthenticated} isAdmin={user && user.role === "admin"}>
+                  <EditSubject />
                 </ProtectedRoute>
               }>
             </Route>

@@ -1,5 +1,4 @@
-import { Flex, HStack, Img, Text, useColorMode, VStack } from '@chakra-ui/react'
-import React from 'react'
+import { Flex, HStack, Img, Text, useColorMode, VStack } from '@chakra-ui/react';
 
 const ReviewCard = ({review}: any) => {
   const { colorMode } = useColorMode();
@@ -10,7 +9,7 @@ const ReviewCard = ({review}: any) => {
     <Flex
       direction={"column"}
       gap={"10"}
-      maxW={["300px", "300px", "300px", "550px"]}
+      maxW={["full", "full", "300px", "550px"]}
       padding={"6"}
       backgroundColor={cardBgColor}
       border={`1px solid ${cardBorderColor}`}

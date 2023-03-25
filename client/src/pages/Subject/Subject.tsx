@@ -1,34 +1,31 @@
-import { Flex, Heading, Image, Stack, VStack } from '@chakra-ui/react'
+import { useEffect } from "react";
+import { Flex, Heading, HStack, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import styles from "../../styles/Subject.module.css"
 import parse from "html-react-parser"
 import NotesCard from "../../components/NotesCard";
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSubject } from '../../redux/actions/subject';
+import { toast } from "react-hot-toast";
+import Loader from "../../components/Layout/Loader";
 
 const Subject = () => {
-  const subject = {
-    name: "Discrete Mathematics",
-    degree: "Engineering",
-    notesAvailable: 7,
-    yearOfStudy: 2,
-    contentBeforeNotes:`<p>Discrete mathematics is the branch of mathematics dealing with objects that can consider only distinct, separated values. It is an important subject across all engineering curriculums, and especially in Computer Science and related courses. It is also a part of GATE (Graduate Aptitude Test in Engineering) exam syllabus, which again, is a very important benchmark for engineering graduates in India.</p> <p>If you want to study Discrete Mathematics, finding good notes &amp; resources becomes very difficult. That's why, we have handwritten notes, both complete and chapterwise, problems/solutions, book recommendations, et cetera, that you'll need to ace the subject. You can access all of this content just by logging on to the CollegeNotes website, anytime, for free!</p> <h2>Discrete Mathematics Notes - NPTEL</h2>`,
-    contentAfterNotes: `<h2>Some Other Random Heading</h2> <p>These are the NPTEL notes you'll need to ace your exams!</p> <ol><li><a href="www.collegenotes.co.in" rel="noopener noreferrer" target="_blank">Week 1: Counting</a></li><li><a href="www.google.com" rel="noopener noreferrer" target="_blank">Week 2: Set Theory</a></li><li><a href="www.bing.com" rel="noopener noreferrer" target="_blank">Week 3: P&amp;C</a></li></ol>`,
-    imageSrc: "https://www.collegenotes.co.in/image-src/discrete-math-photo.png",
-  }
+  const dispatch = useDispatch();
+  const params = useParams();
 
-  var year: String = "";
-  switch (subject.yearOfStudy) {
-    case 1:
-      year = "First";
-      break;
-    case 2:
-      year = "Second";
-      break;
-    case 3:
-      year = "Third";
-      break;
-    case 4:
-      year = "Fourth";
-      break;
-  }
+  useEffect(() => {
+    dispatch(getSubject(params.id) as any);
+  }, [dispatch, params.id])
+
+  const { subject, error, loading } = useSelector((state: any) => state.subjects);
+  document.title = subject ? (subject.title + " - Notes, PYQs and more on CollegeNotes") : "Loading - CollegeNotes";
+
+  useEffect(() => {
+    if(error) {
+      toast.error(error);
+      dispatch({ type: "clearError"});
+    };
+  }, [error, dispatch])
 
   return (
     <Flex
@@ -37,53 +34,103 @@ const Subject = () => {
       direction={"row"}
       justifyContent={"space-around"}
     >
-      <Stack
-        height={"100%"}
-        marginX={"3"}
-        marginY={["8","10","12","12","14"]}
-        width={"container.md"}
-      >
-        <Heading
-          size={["xs", "sm"]}
-          fontFamily={"Roboto Condensed"}
-          children={`${subject.degree} - ${year} Year`}
-          textTransform={"uppercase"}
-          paddingBottom={"2px"}
-          borderBottom={"3px solid"}
-          display={"inline"}
-          width={"fit-content"}
-        />
-
-        <Heading
-          as={"h1"}
-          paddingTop={["1", "3"]}
-          children={subject.name}
-          fontFamily={"Source Serif Pro"}
-          fontWeight={"extrabold"}
-          size={["xl", "3xl"]}
-        />
-
-        <VStack width={"100%"}>
-          <Image
-            src={subject.imageSrc}
-            width={"100%"}
-            borderRadius={"10"}
-            marginY={["4", "6"]}
+      { loading || !subject ? (<Loader />) : (
+        <Stack
+          height={"100%"}
+          marginX={"3"}
+          marginY={["8","10","12","12","14"]}
+          width={"container.md"}
+        >
+          <Heading
+            size={["xs", "sm"]}
+            fontFamily={"Roboto Condensed"}
+            children={`${subject.degree} - ${subject.year} Year`}
+            textTransform={"uppercase"}
+            paddingBottom={"2px"}
+            borderBottom={"3px solid"}
+            display={"inline"}
+            width={"fit-content"}
           />
-          <Stack className={styles.content}>
-            {parse(subject.contentBeforeNotes)};
-            <NotesCard
-              title="Data Structures BE Notes"
-              views={"3.2K"}
-              imageSrc={"https://cdn.eduonix.com/assets/images/header_img/2019032806183511015.jpg"}
-              id={324}
-              contributor={"Swapnil Sachan"}
-              institution={"Chandigarh University"}
+
+          <Heading
+            as={"h1"}
+            paddingTop={["1", "3"]}
+            children={subject.title}
+            fontFamily={"Source Serif Pro"}
+            fontWeight={"extrabold"}
+            size={["xl", "3xl"]}
+          />
+
+          <VStack width={"100%"}>
+            <Image
+              src={subject.poster.url}
+              width={"100%"}
+              borderRadius={"10"}
+              marginY={["4", "6"]}
             />
-            {parse(subject.contentAfterNotes)};
-          </Stack>
-        </VStack>
-      </Stack>
+
+            <Stack className={styles.content}>
+              {parse(subject.beforeNotesContent)};
+
+              { subject.notes.length > 0 ? (
+                <HStack
+                  maxWidth={["95vw", "95vw", "container.md"]}
+                  overflowX={"auto"}
+                  sx={{
+                    '::-webkit-scrollbar': {
+                      width: '11px',
+                      height: 'auto',
+                    },
+                    
+                    '::-webkit-scrollbar-track': {
+                      backgroundColor: 'transparent'
+                    },
+                    
+                    '::-webkit-scrollbar-thumb': {
+                      backgroundColor: '#8e9bac',
+                      borderRadius: '15px',
+                      border: '5px solid transparent',
+                      backgroundClip: 'content-box',
+                    },
+                    
+                    '::-webkit-scrollbar-thumb:hover': {
+                      backgroundColor: '#718096',
+                    }
+                  }}
+                >
+                  { subject.notes.map((notes: any) => {
+                    return (
+                      <NotesCard
+                        key={notes._id}
+                        _id={notes._id}
+                        id={notes.id}
+                        title={notes.title}
+                        imageSrc={subject.icon.url}
+                        views={notes.views}
+                        contributor={notes.contributor}
+                        institution={notes.institution}
+                      />
+                    )
+                  })}
+                </HStack>
+              ) : (
+
+                <Text
+                  children={"No notes are available for this subejct."}
+                  fontFamily={"Inter"}
+                  fontSize={["15px", "17px"]}
+                  fontStyle={"italic"}
+                  alignSelf={"center"}
+                  opacity={"0.7"}
+                />
+              )}
+              
+
+              {parse(subject.afterNotesContent)};
+            </Stack>
+          </VStack>
+        </Stack>
+      )}
     </Flex>
   )
 }

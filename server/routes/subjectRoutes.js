@@ -12,11 +12,11 @@ router
   .get(getAllSubjects);
 
 router
-  .route("/subject/:_id")
+  .route("/subject/:id")
   .get(getSubjectContent);
 
 router
-  .route("/notes/:_id")
+  .route("/notes/:id")
   .get(getNotes);
 
 // Admin Routes ------------------------------------------------------------------------------------------------------------------

@@ -23,7 +23,7 @@ ChartJS.register(
   Legend
 );
 
-export const LineChart = () => {
+export const LineChart = ({views=[]}) => {
   const labels = getMonthsInOrder();
 
   const options = {
@@ -44,7 +44,7 @@ export const LineChart = () => {
     datasets: [
       {
         label: "Views in Thousands",
-        data: [1, 5, 3, 4, 5, 3.5, 4, 3, 6, 6.2, 6.7, 7],
+        data: views,
         borderColor: "#00B5D8",
         backgroundColor: "#00B5D8"
       }

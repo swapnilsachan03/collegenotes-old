@@ -14,4 +14,4 @@ const store = configureStore({
 })
 
 export default store;
-export const server = "http://server.collegenotes.co.in/api/v1";
+export const server = "https://server.collegenotes.co.in/api/v1";

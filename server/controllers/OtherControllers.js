@@ -1,7 +1,7 @@
 import { catchAsyncError } from '../middlewares/catchAsyncError.js';
 import { Stats } from '../models/stats.js';
 
-export const getDashboardStats = catchAsyncError(async (req, res, next) => {
+const getDashboardStats = catchAsyncError(async (req, res, next) => {
   const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(12);
   const statsData = [];
 
@@ -52,3 +52,5 @@ export const getDashboardStats = catchAsyncError(async (req, res, next) => {
       viewsProfit
     })
 })
+
+export default getDashboardStats;

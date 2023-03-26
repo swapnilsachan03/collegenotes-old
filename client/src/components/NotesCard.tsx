@@ -18,7 +18,7 @@ const NotesCard = ({_id, views, title, imageSrc, id, contributor, institution, l
   return (
     <Stack
       direction={"column"}
-      minWidth={["250px", "270px"]}
+      minWidth={"260px"}
       alignItems={"flex-start"}
       padding={"3"}
       backgroundColor={cardBgColor}
@@ -36,7 +36,7 @@ const NotesCard = ({_id, views, title, imageSrc, id, contributor, institution, l
       
       <Heading
         as={"h4"}
-        noOfLines={[2, 1]}
+        noOfLines={1}
         textAlign={"left"}
         fontFamily={"Inter"}
         size={"md"}

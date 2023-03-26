@@ -18,7 +18,7 @@ const SubjectCard = ({_id, views, title, imageSrc, id, description, notesCount, 
   return (
     <Stack
       direction={"column"}
-      width={["16.5em", "16.5em", "16.5em", "20em", "20em"]}
+      width={["20em", "16.5em", "16.5em", "20em", "20em"]}
       justifyContent={"space-between"}
       padding={"3"}
       backgroundColor={cardBgColor}

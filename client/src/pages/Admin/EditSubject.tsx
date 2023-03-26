@@ -55,7 +55,7 @@ const EditSubject = () => {
     setKeywords(subject?.seoKeywords);
     setNotes(subject?.notes);
     setPosterPrev(subject?.poster.url);
-  });
+  }, [subject?.title]);
 
   const { loading: adminLoading, error: adminError, message: adminMessage } = useSelector((state: any) => state.admin);
 
@@ -226,7 +226,7 @@ const EditSubject = () => {
                 <Input
                   value={keywords}
                   onChange={(e) => setKeywords(e.target.value)}
-                  placeholder='SEO Keywords (space-seperated)'
+                  placeholder='SEO Keywords (comma-seperated)'
                   type={"text"}
                   borderRadius={"4px"}
                   focusBorderColor="cyan.500"

@@ -122,9 +122,9 @@ const Subject = () => {
               ) : (
 
                 <Text
-                  children={"No notes are available for this subejct."}
+                  children={"No notes are available for this subject."}
                   fontFamily={"Inter"}
-                  fontSize={["15px", "17px"]}
+                  fontSize={["14px", "16px"]}
                   fontStyle={"italic"}
                   alignSelf={"center"}
                   opacity={"0.7"}

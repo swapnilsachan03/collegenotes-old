@@ -189,7 +189,7 @@ const AddSubject = () => {
               <Input
                 value={keywords}
                 onChange={(e) => setKeywords(e.target.value)}
-                placeholder='SEO Keywords (space-seperated)'
+                placeholder='SEO Keywords (comma-seperated)'
                 type={"text"}
                 borderRadius={"4px"}
                 focusBorderColor="cyan.500"

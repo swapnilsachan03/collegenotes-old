@@ -5,7 +5,7 @@ import { getUser } from './redux/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 import { AnyAction } from "redux";
-import ProtectedRoute from './config/ProtectedRoute';
+import ProtectedRoute from './others/ProtectedRoute';
 import Home from './pages/Home/Home';
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
@@ -35,19 +35,19 @@ function App() {
     dispatch(getUser() as unknown as AnyAction);
   }, [dispatch])
   
-  const { isAuthenticated, user, loading, message } = useSelector((state: any) => state.auth);
+  const { isAuthenticated, user, loading, error, message } = useSelector((state: any) => state.auth);
   
   useEffect(() => {
-    // if(error) {
-    //   toast.error(error)
-    //   dispatch({ type: "clearError" });
-    // }
+    if(error && error !== "Please login to access") {
+      toast.error(error)
+      dispatch({ type: "clearError" });
+    }
 
     if(message) {
       toast.success(message)
       dispatch({ type: "clearMessage" });
     }
-  }, [dispatch, message])
+  }, [dispatch, error, message])
   
   return (
     <Router>

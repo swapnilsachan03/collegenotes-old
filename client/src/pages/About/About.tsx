@@ -1,5 +1,6 @@
 import { Avatar, Flex, Heading, ListIcon, ListItem, Stack, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import { RxArrowRight } from 'react-icons/rx'
+import { Link } from '@chakra-ui/react'
 
 const about = () => {
   document.title = "About Us - CollegeNotes"
@@ -60,11 +61,15 @@ const about = () => {
 
             <VStack width={["", "", "75%"]}>
               <Text fontFamily={"Inter"} textAlign={"justify"}>
-                CollegeNotes began with a simple idea of sharing the discrete mathematics notes that I was making during the third semester of my college. At that time, I didn't know much about development, so I made a simple HTML and CSS powered static website by linking a few webpages, made it live and called it a day. But it was the time when that simple website got immense traffic and positive response that I understood the potential of that idea. I was overwhelmed by the requests for more content that I was getting from my friends and other people. So I decided to make it a full-fledged website and take it on as a full-time side project.<br/><br/>
+                CollegeNotes began with a simple idea of sharing the discrete mathematics notes that I was making during the third semester of my college. At that time, I didn't know much about development, so I made a simple HTML and CSS powered
+                {" "}<Link href={"https://old.collegenotes.co.in/"} target={"_blank"} color={"teal.500"}>static website</Link> {" "}
+                by linking a few webpages, made it live and called it a day. But it was the time when that simple website got immense traffic and positive response that I understood the potential of that idea. I was overwhelmed by the requests for more content that I was getting from my friends and other people. So I decided to make it a full-fledged website and take it on as a full-time side project.<br/><br/>
                 
-                Three months later, I started working on it and developed it end-to-end. I added a lot of features on the admin as well as the client side (such as dark and light themes, a search bar, an authentication system, features for favoriting subjects and bookmarking notes for the users and interactive users, subject and notes management system on the admin side). I also tried to make the UI more minimal and user-friendly.<br/><br/>
+                Three months later, I started working on it and developed it end-to-end. I added a lot of features on the admin as well as the client side (such as dark and light themes, a search bar, an authentication system, features for favoriting subjects and bookmarking notes for users, and interactive subject, notes & user management systems on the admin side). I also tried to make the UI more minimal and user-friendly.<br/><br/>
+
+                Till now, only I have been working on this website, but I am planning to make it a community-driven project and make it a platform for students to share their notes and other study materials. I am also planning to add a lot of features to this website in the future, and maybe roll out mobile apps for better accessibility. <br/><br/>
                 
-                Till now only I have been working on it, but I am planning to make it a community-driven project and make it a platform for students to share their notes and other study materials. I am also planning to add a lot of features to this website in the future, and maybe roll out mobile apps for better accessibility to the students. Any inputs or suggestions are always welcomed through my social media channels.
+                With all of this being said, any inputs or suggestions are always welcomed through my social media channels.
               </Text>
             </VStack>
           </Flex>
@@ -110,7 +115,7 @@ const about = () => {
                   
                   <ListItem>
                     <ListIcon as={RxArrowRight} />
-                    MongoDB with MOngoose for database management
+                    MongoDB with Mongoose for database management
                   </ListItem>
                   
                   <ListItem>
@@ -138,7 +143,7 @@ const about = () => {
 
             <VStack
               width={["", "", "30%"]}
-              display={["flex", "flex", "none", "none", "none"]}
+              display={["flex", "flex", "none"]}
               alignSelf={"center"}
               paddingTop={"4"}
               fontSize={"sm"}
@@ -146,16 +151,19 @@ const about = () => {
               fontFamily={"Inter"}
             >
               <Avatar
+                src="/images/founder.jpg"
                 size={"2xl"}
                 name={"Swapnil Sachan"}
               />
 
             <p style={{marginTop: "15px"}}>Swapnil Sachan</p>
-            <p style={{marginTop: "1px"}}>Creator, CollegeNotes</p>
+            <p style={{marginTop: "1px"}}>Creator of CollegeNotes</p>
           </VStack>
 
             <Text fontFamily={"Inter"} textAlign={"justify"} paddingTop={"3"}>
-              The development of this website has required a lot of efforts and cost me a whole two months. The constant maintenance efforts are even more costly and tough to carry on with. If you are getting benefitted by this platform and want to support me and this website, you can do so by donating to me through the donations page of this website only. Any amount of donation is appreciated and will be used to maintain this website and to add more features to it. Thank you for your support!
+              The development of this website has required a lot of efforts and has costed me a whole two months. The constant maintenance efforts are even more tough to carry on with. If you are getting benefitted by this platform in some way and want to support me and this website, you can do so by donating to me through the
+              {" "}<Link href={"/donate"} color={"teal.500"}>donations page</Link> {" "}
+              of this website only. Any amount of donation is appreciated and will be used to maintain this website and to add more features to it. Thank you for your support!
             </Text>
           </VStack>
           
@@ -169,6 +177,7 @@ const about = () => {
             fontFamily={"Inter"}
           >
             <Avatar
+              src="/images/founder.jpg"
               size={"2xl"}
               name={"Swapnil Sachan"}
             />

@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import SubjectCard from "../../components/SubjectCard";
+import { degrees, years } from "../../others/subjectProps";
 import { getAllSubjects } from "../../redux/actions/subject";
 
 const Subjects = () => {
@@ -12,9 +13,6 @@ const Subjects = () => {
   const [keywords, setKeywords] = useState<string>("");
   const [degree, setDegree] = useState<string>("");
   const [year, setYear] = useState<string>("");
-
-  const branches: string[] = ["Computer Science", "Civil", "Mechanical", "Electrical", "Information Technolgy", "Mechatronics", "CS Specializations"]
-  const years: string[] = ["First", "Second", "Third", "Fourth"]
 
   const dispatch = useDispatch();
   const { subjects, error, message, loading } = useSelector((state: any) => state.subjects);
@@ -74,12 +72,12 @@ const Subjects = () => {
               rightIcon={<FaChevronDown size={"10px"} />}
               marginLeft={["0", "2"]}
             >
-              Branch
+              Degree
             </MenuButton>
 
             <MenuList>
               {
-                branches.map((value, index) => {
+                degrees.map((value, index) => {
                   return (
                     <MenuItem key={index} onClick={() => setDegree(value)}> {value} </MenuItem>
                   )

@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Layout/Loader";
-import ViewSDKClient from "../../components/PDF/ViewSDKClient";
+import ViewSDKClient from "../../others/ViewSDKClient";
 import { getNotes } from "../../redux/actions/subject";
 
 const Notes = () => {

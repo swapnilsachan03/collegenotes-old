@@ -9,6 +9,7 @@ import ReactQuill from 'react-quill';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSubject } from '../../redux/actions/admin';
 import toast from 'react-hot-toast';
+import { degrees, years } from '../../others/subjectProps';
 
 const AddSubject = () => {
   document.title = "Add Subject - CollegeNotes";
@@ -100,9 +101,6 @@ const AddSubject = () => {
       setIcon(file);
     }
   }
-
-  const degrees = ["Engineering", "BSc", "BBA"];
-  const years = ["First", "Second", "Third"];
 
   return (
     <>

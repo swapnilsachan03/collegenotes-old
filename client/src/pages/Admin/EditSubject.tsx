@@ -13,6 +13,7 @@ import { getSubject } from '../../redux/actions/subject';
 import Loader from '../../components/Layout/Loader';
 import AdminNotesModal from '../../components/AdminNotesModal';
 import { BsFilePdfFill } from 'react-icons/bs';
+import { degrees, years } from '../../others/subjectProps';
 
 const EditSubject = () => {
   const [ queryParams ] = useSearchParams();
@@ -134,9 +135,6 @@ const EditSubject = () => {
       setIcon(file);
     }
   }
-
-  const degrees = ["Engineering", "BSc", "BBA"];
-  const years = ["First", "Second", "Third"];
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 

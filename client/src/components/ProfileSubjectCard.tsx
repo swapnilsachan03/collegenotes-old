@@ -6,6 +6,7 @@ import { getUser } from '../redux/actions/auth';
 import { unfavoriteSubject } from '../redux/actions/profile';
 import toast from 'react-hot-toast';
 import { RiDeleteBin4Fill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 const ProfileSubjectCard = ({_id, views, title, id, description, notesCount}: any) => {
   const { colorMode } = useColorMode();
@@ -79,11 +80,11 @@ const ProfileSubjectCard = ({_id, views, title, id, description, notesCount}: an
       />
 
       <Stack direction={"row"} justifyContent="flex-end" width={"100%"}>
-        <a href={`/subject/${id}`} target={"_blank"} rel="noreferrer">
+        <Link to={`/subject/${id}`} target={"_blank"} rel="noreferrer">
           <Button colorScheme={"teal"} size={"sm"} leftIcon={<FiArrowUpRight />}>
             Open
           </Button>
-        </a>
+        </Link>
 
         <Button colorScheme={"red"} size={"sm"} isLoading={loading} onClick={() => unfavoriteSubjectHandler(_id)}>
           <RiDeleteBin4Fill />

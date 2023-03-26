@@ -39,7 +39,9 @@ const EditSubject = () => {
 
   useEffect(() => {
     dispatch(getSubject(id) as any);
+  }, [dispatch, id])
 
+  useEffect(() => {
     setSubjectName(subject?.title);
     setBeforeNotes(subject?.beforeNotesContent);
     setAfterNotes(subject?.afterNotesContent);
@@ -52,7 +54,7 @@ const EditSubject = () => {
     setKeywords(subject?.seoKeywords);
     setNotes(subject?.notes);
     setPosterPrev(subject?.poster.url);
-  }, [dispatch, id, subject?.title, subject?.beforeNotesContent, subject?.afterNotesContent, subject?.id, subject?._id, subject?.degree, subject?.year, subject?.description, subject?.seoDescription, subject?.seoKeywords, subject?.poster.url])
+  });
 
   const { loading: adminLoading, error: adminError, message: adminMessage } = useSelector((state: any) => state.admin);
 

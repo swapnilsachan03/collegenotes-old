@@ -32,7 +32,7 @@ const Notes = () => {
       viewSDKClient.previewFile(
         "pdf-div",
         {
-          embedMode: "SIZED_CONTAINER",
+          embedMode: window.innerWidth > 800 ? "SIZED_CONTAINER" : "FULL_WINDOW",
           showAnnotationTools: false,
           showPageControls: true,
           showDownloadPDF: false,

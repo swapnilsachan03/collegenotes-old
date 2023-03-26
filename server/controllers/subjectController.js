@@ -1,3 +1,4 @@
+import sharp from "sharp";
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import { Notes } from "../models/notes.js";
 import { Stats } from "../models/stats.js";
@@ -104,7 +105,16 @@ export const addSubject = catchAsyncError(async (req, res, next) => {
   await uploadFile(poster.buffer, posterKey, poster.mimetype);
 
   var iconKey = generateFileName(icon.originalname);
-  await uploadFile(icon.buffer, iconKey, icon.mimetype);
+  await sharp(icon.buffer)
+    .resize({
+      width: 200,
+      height: 200,
+      fit: sharp.fit.cover
+    })
+    .toBuffer(async (err, buffer, info) => {
+      if(buffer) await uploadFile(buffer, iconKey, icon.mimetype);
+      if(err) return next(new ErrorHandler("Error while uploading icon.", 500));
+    })
 
   await Subject.create({
     title,
@@ -237,7 +247,17 @@ export const updateSubject = catchAsyncError(async (req, res, next) => {
   if(icon) {
     await deleteFile(subject.icon.fileName);
     var iconKey = generateFileName(icon.originalname);
-    await uploadFile(icon.buffer, iconKey, icon.mimetype);
+
+    await sharp(icon.buffer)
+    .resize({
+      width: 200,
+      height: 200,
+      fit: sharp.fit.cover
+    })
+    .toBuffer(async (err, buffer, info) => {
+      if(buffer) await uploadFile(buffer, iconKey, icon.mimetype);
+      if(err) return next(new ErrorHandler("Error while uploading icon.", 500));
+    })
     subject.icon.fileName = iconKey;
   }
 

@@ -10,7 +10,9 @@ const store = configureStore({
     profile: profileReducer,
     subjects: subjectReducer,
     admin: adminReducer,
-  }
+  },
+
+  devTools: process.env.NODE_ENV !== "production",
 })
 
 export default store;

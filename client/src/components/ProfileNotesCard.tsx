@@ -6,6 +6,7 @@ import { getUser } from '../redux/actions/auth';
 import { toast } from 'react-hot-toast';
 import { RiDeleteBin4Fill } from 'react-icons/ri';
 import { unBookmarkNotes } from '../redux/actions/profile';
+import { Link } from 'react-router-dom';
 
 const NotesCard = ({_id, views, title, id, contributor, institution}: any) => {
   const { colorMode } = useColorMode();
@@ -83,11 +84,11 @@ const NotesCard = ({_id, views, title, id, contributor, institution}: any) => {
       />
 
       <HStack justifyContent="flex-end" width={"100%"} paddingTop={"1"}>
-        <a href={`/notes/${id}`}>
+        <Link to={`/notes/${id}`}>
           <Button colorScheme={"teal"} size={"sm"} leftIcon={<FiArrowUpRight />}>
             Open
           </Button>
-        </a>
+        </Link>
       
         <Button colorScheme={"red"} size={"sm"} isLoading={loading} onClick={() => unBookmarkNotesHandler(_id)}>
           <RiDeleteBin4Fill />

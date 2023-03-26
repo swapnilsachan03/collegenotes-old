@@ -1,5 +1,8 @@
-import { Avatar, Box, Button, Container, FormLabel, Input, VStack } from '@chakra-ui/react';
+import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Avatar, Box, Button, Container, FormLabel, HStack, Input, useDisclosure, VStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { BsFillExclamationCircleFill } from 'react-icons/bs';
+import { FaExclamation } from 'react-icons/fa';
+import { MdWarning } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/actions/auth';
 import { fileUploadCSS } from "../../styles/fileUploadCSS";
@@ -14,6 +17,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef<HTMLButtonElement>(null);
 
   const fileUploadStyle = {
     "&::file-selector-button": fileUploadCSS
@@ -112,10 +117,14 @@ const Register = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>): void => changeImageHandler(e)}
             />
           </Box>
-      
-          <Button marginY={"4"} size={"sm"} colorScheme={"teal"} type="submit">
-            Sign Up
-          </Button>
+
+          <HStack>  
+            <Button marginY={"4"} size={"sm"} colorScheme={"teal"} type="submit">
+              Sign Up
+            </Button>
+
+            <Button onClick={onOpen} size={"sm"} colorScheme={"orange"} type="button" children={<FaExclamation />} />
+          </HStack>
 
           <Box marginY={"4"} fontSize={"sm"}>
             Already a member? {" "}
@@ -128,6 +137,34 @@ const Register = () => {
           </Box>
         </form>
       </VStack>
+
+      <AlertDialog
+        motionPreset='slideInBottom'
+        onClose={onClose}
+        isOpen={isOpen}
+        isCentered
+        leastDestructiveRef={cancelRef}
+      >
+        <AlertDialogOverlay />
+
+        <AlertDialogContent marginX={["2", "unset"]}>
+          <AlertDialogHeader>Disclosure</AlertDialogHeader>
+          <AlertDialogCloseButton />
+
+          <AlertDialogBody fontFamily={"Inter"} fontSize={["14px", "15px"]}>
+            The present authentication system is just for providing functionality to the users and requires no email verification, thus the account recovery doesn't work with the accounts you create now.<br/><br/>
+
+            Your account and associated information will be deleted once a permanent authentication system is implemented.
+          </AlertDialogBody>
+
+          <AlertDialogFooter>
+            <Button size={"sm"} colorScheme={"orange"} variant={"outline"} onClick={onClose}>
+              Okay
+            </Button>
+          </AlertDialogFooter>
+
+        </AlertDialogContent>
+      </AlertDialog>
     </Container>
   )
 }

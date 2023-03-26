@@ -1,34 +1,19 @@
-import { useEffect } from 'react';
 import { Button, Heading, Image, Stack, Text, useColorMode } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
 import { FiArrowUpRight } from 'react-icons/fi';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { favoriteSubject } from '../redux/actions/subject';
-import toast from 'react-hot-toast';
 
-const SubjectCard = ({_id, views, title, imageSrc, id, description, notesCount}: any) => {
+const SubjectCard = ({_id, views, title, imageSrc, id, description, notesCount, loading}: any) => {
   const { colorMode } = useColorMode();
   const cardBorderColor = colorMode === 'light' ? "lightgray" : "#2D3748";
   const cardBgColor = colorMode === 'light' ? "#F7FAFC" : "#171923";
 
   const dispatch = useDispatch();
-  const { loading, error, message } = useSelector((state: any) => state.subjects);
-
   const favoriteSubjectHandler = async (subjectID: string) => {
     await dispatch(favoriteSubject(subjectID) as any);
   }
-
-  useEffect(() => {
-    if(error) {
-      toast.error(error);
-      dispatch({ type: "clearError"});
-    };
-
-    if(message) {
-      toast.success(message);
-      dispatch({ type: "clearMessage"});
-    }
-  }, [dispatch, error, message]);
 
   return (
     <Stack
@@ -74,11 +59,11 @@ const SubjectCard = ({_id, views, title, imageSrc, id, description, notesCount}:
       </Stack>
 
       <Stack direction={"row"} justifyContent="flex-end" width={"100%"}>
-        <a href={`/subject/${id}`} target={"_blank"}>
+        <Link to={`/subject/${id}`}>
           <Button colorScheme={"teal"} size={"sm"} leftIcon={<FiArrowUpRight />}>
             Open
           </Button>
-        </a>
+        </Link>
 
         <Button color={"red.400"} size={"sm"} isLoading={loading} onClick={() => favoriteSubjectHandler(_id)}>
           <FaHeart />

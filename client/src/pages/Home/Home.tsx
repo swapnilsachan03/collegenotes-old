@@ -6,27 +6,28 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  document.title = "CollegeNotes -  A website for college students"
   const reviews = [
     {
-      content: "Lecturenote is a good platform for sharing notes, assignments and conducting Institute classrooms in a single platform where we can share, Learn and gain knowledge.",
+      content: "CollegeNotes has been an absolute exam-time life saver for me. I can just simply consume video content on YouTube and read notes from here. This saves me a lot of time and spares me the pain of note taking. I would recommend this to everyone.",
       profileImg: "https://images.fineartamerica.com/images-medium-large-5/beautiful-summer-landscape-in-mountains-boon-mee.jpg",
-      name: "Swapnil Sachan",
+      name: "Anurag Kumar",
       institution: "Chandigarh University",
       degreeAndYear: "CSE, Second Year"
     },
     {
-      content: "It is such an amazing experience to do online learning on lecture notes.Lecture Notes has been a superb website for online learning. It's very effective in that the online learning materials are easily accessible. It's very efficient for recorded classes since one can review them at a convenient time.Its an excellent website.",
+      content: "CollegeNotes is a good platform for accessing notes, assignments, PYQs and other study materials. The good thing is that all of this is accessible through a single window and that's what makes is more awesome!",
       profileImg: "https://images.fineartamerica.com/images-medium-large-5/beautiful-summer-landscape-in-mountains-boon-mee.jpg",
-      name: "Random Person",
-      institution: "IIT Kanpur",
-      degreeAndYear: "Mechanical, First Year"
+      name: "Rohit Singh",
+      institution: "Chandigarh University",
+      degreeAndYear: "CSE, Second Year"
     },
     {
-      content: "The app is good but sometimes it doesn't work properly, maybe due to some network issue. Otherwise all the features of the app are really good. And the best part is the help desk of the app. They actually resolve all the issues I have. It helps me a lot.",
+      content: "The website's UI is minimal and accessible. It is so easy to read notes and content on CollegeNotes on any device, I can also install it on my phone as a web app. It helps me a lot. The best part is the favorite subjects and bookmark notes feature of the website. I can access my favorite subjects and notes easily.",
       profileImg: "https://images.fineartamerica.com/images-medium-large-5/beautiful-summer-landscape-in-mountains-boon-mee.jpg",
-      name: "Random Person",
-      institution: "IIT Kanpur",
-      degreeAndYear: "Mechanical, First Year"
+      name: "Shubhkar Sharma",
+      institution: "Chandigarh University",
+      degreeAndYear: "CSE, Second Year"
     },
   ];
   
@@ -102,6 +103,7 @@ export default function Home() {
                 alignSelf={"center"}
                 objectFit={"scale-down"}
                 src={"/images/home-hero-image.png"}
+                loading={"lazy"}
               />
             </Flex>
           </Flex>
@@ -128,6 +130,7 @@ export default function Home() {
               alignSelf={"center"}
               objectFit={"scale-down"}
               src={"/images/upcoming-features-illustration.png"}
+              loading={"lazy"}
             />
             
             <VStack alignItems={"flex-start"} justifyContent={"center"}>

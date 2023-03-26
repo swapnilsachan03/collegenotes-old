@@ -1,8 +1,8 @@
 import { Avatar, Flex, Heading, ListIcon, ListItem, Stack, Text, UnorderedList, VStack } from '@chakra-ui/react'
-import React from 'react'
 import { RxArrowRight } from 'react-icons/rx'
 
 const about = () => {
+  document.title = "About Us - CollegeNotes"
 
   return (
     <>
@@ -174,7 +174,7 @@ const about = () => {
             />
 
             <p style={{marginTop: "15px"}}>Swapnil Sachan</p>
-            <p style={{marginTop: "1px"}}>Founder, CollegeNotes</p>
+            <p style={{marginTop: "1px"}}>Creator of CollegeNotes</p>
           </VStack>
         </Flex>
 

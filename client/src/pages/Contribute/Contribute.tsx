@@ -7,8 +7,9 @@ const contribute = () => {
       <Heading
         size={"lg"}
         fontWeight={"normal"}
+        fontStyle={"italic"}
         textAlign={"center"}
-        fontFamily={"Roboto"}
+        fontFamily={"Inter"}
         opacity={"0.8"}
       >
         Contributions will be made live soon.

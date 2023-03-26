@@ -8,7 +8,7 @@ import { getAllSubjects } from "../../redux/actions/subject";
 
 const Subjects = () => {
   document.title = "CollegeNotes - Subject Browser";
-  
+
   const [keywords, setKeywords] = useState<string>("");
   const [degree, setDegree] = useState<string>("");
   const [year, setYear] = useState<string>("");
@@ -17,16 +17,21 @@ const Subjects = () => {
   const years: string[] = ["First", "Second", "Third", "Fourth"]
 
   const dispatch = useDispatch();
-  const { subjects, error } = useSelector((state: any) => state.subjects);
-  
+  const { subjects, error, message, loading } = useSelector((state: any) => state.subjects);
+
   useEffect(() => {
     dispatch(getAllSubjects(keywords, degree, year) as any);
-    
+
     if(error) {
       toast.error(error);
       dispatch({ type: "clearError"});
     };
-  }, [dispatch, keywords, degree, year, error])
+
+    if(message) {
+      toast.success(message);
+      dispatch({ type: "clearMessage"});
+    };
+  }, [dispatch, keywords, degree, year, error, message])
 
   return (
     <Container minH={"95vh"} maxW={"container.lg"} paddingY="8">
@@ -131,6 +136,7 @@ const Subjects = () => {
                   id={subject.id}
                   creator={subject.creator}
                   notesCount={subject.numOfNotes}
+                  loading={loading}
                 />
               )
             })

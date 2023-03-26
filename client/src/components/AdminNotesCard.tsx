@@ -2,8 +2,9 @@ import { Button, Heading, HStack, Stack, Text, useColorMode } from '@chakra-ui/r
 import { FaDownload } from 'react-icons/fa';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { RiDeleteBin4Fill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
-const AdminNotesCard = ({title, id, _id, dbSubjectID, index, views, contributor, description, deleteNotesHandler, loading}: any) => {
+const AdminNotesCard = ({title, id, _id, url, dbSubjectID, index, views, contributor, description, deleteNotesHandler, loading}: any) => {
   const { colorMode } = useColorMode();
   const cardBorderColor = colorMode === 'light' ? "lightgray" : "#2D3748";
   const cardBgColor = colorMode === 'light' ? "#F7FAFC" : "#171923";
@@ -54,13 +55,13 @@ const AdminNotesCard = ({title, id, _id, dbSubjectID, index, views, contributor,
       </HStack>
 
       <HStack justifyContent="flex-end" paddingTop={"1"}>
-        <a href={`/notes/${id}`}>
+        <Link to={`/notes/${id}`}>
           <Button colorScheme={"cyan"} variant={"outline"} size={"sm"} leftIcon={<FiArrowUpRight />}>
             Open
           </Button>
-        </a>
+        </Link>
 
-        <a href={`/notes/${id}`}>
+        <a href={url} target={"_blank"} rel={"noreferrer"}>
           <Button colorScheme={"cyan"} size={"sm"}>
             <FaDownload />
           </Button>

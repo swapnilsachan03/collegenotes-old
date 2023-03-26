@@ -100,6 +100,7 @@ const AdminNotesModal = ({
                       title={element.title}
                       id={element.id}
                       _id={element._id}
+                      url={element.document.url}
                       dbSubjectID={dbSubjectID}
                       index={index}
                       views={element.views}

@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import sharp from "sharp";
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import { Notes } from "../models/notes.js";
 import { Subject } from "../models/subject.js";
@@ -32,7 +33,21 @@ export const register = catchAsyncError(async (req, res, next) => {
 
   if(file) {
     imgName = generateFileName(file.originalname);
-    await uploadFile(file.buffer, imgName, file.mimetype);
+    await sharp(file.buffer)
+      .resize({
+        width: 500,
+        height: 500,
+        fit: sharp.fit.cover
+      })
+      .toBuffer(async (err, buffer, info) => {
+        if(buffer) {
+          await uploadFile(buffer, imgName, file.mimetype);
+        }
+
+        else {
+          return next(new ErrorHandler("Error while uploading image.", 500));
+        }
+      })
   }
 
   user = await User.create({
@@ -40,7 +55,8 @@ export const register = catchAsyncError(async (req, res, next) => {
     email,
     password,
     avatar: {
-      imgName
+      imgName,
+      url: await getObjectSignedUrl(imgName)
     }
   });
 
@@ -155,8 +171,7 @@ export const getMyProfile = catchAsyncError(async (req, res, next) => {
     .populate("bookmarkedNotes");
 
   if(user.avatar.imgName) {
-    const imgUrl = await getObjectSignedUrl(user.avatar.imgName);
-    user.avatar.url = imgUrl;
+    user.avatar.url = await getObjectSignedUrl(user.avatar.imgName);
     await user.save();
   }
 
@@ -185,16 +200,27 @@ export const updateProfile = catchAsyncError(async (req, res, next) => {
   }
 
   if(file) {
+    const imgName = generateFileName(file.originalname);
     await deleteFile(user.avatar.imgName);
 
-    const imgName = generateFileName(file.originalname);
-    await uploadFile(file.buffer, imgName, file.mimetype);
+    await sharp(file.buffer)
+      .resize({
+        width: 500,
+        height: 500,
+        fit: sharp.fit.cover
+      })
+
+      .toBuffer(async (err, buffer, info) => {
+        if(buffer) await uploadFile(buffer, imgName, file.mimetype);
+        if(err) return next(new ErrorHandler("Error while uploading image.", 500));
+      })
+
     user.avatar.imgName = imgName;
   }
 
-  if(user.name) user.name = name
-  if(user.degree) user.degree = degree
-  if(user.year) user.year = year
+  if(name) user.name = name
+  if(degree) user.degree = degree
+  if(year) user.year = year
 
   await user.save();
 

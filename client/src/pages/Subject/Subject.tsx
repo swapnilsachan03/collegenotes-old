@@ -17,7 +17,7 @@ const Subject = () => {
     dispatch(getSubject(params.id) as any);
   }, [dispatch, params.id])
 
-  const { subject, error, loading } = useSelector((state: any) => state.subjects);
+  const { subject, error, message, loading } = useSelector((state: any) => state.subjects);
   document.title = subject ? (subject.title + " - Notes, PYQs and more on CollegeNotes") : "Loading - CollegeNotes";
 
   useEffect(() => {
@@ -25,7 +25,12 @@ const Subject = () => {
       toast.error(error);
       dispatch({ type: "clearError"});
     };
-  }, [error, dispatch])
+    
+    if(message) {
+      toast.success(message);
+      dispatch({ type: "clearMessage"});
+    }
+  }, [error, message, dispatch])
 
   return (
     <Flex
@@ -109,6 +114,7 @@ const Subject = () => {
                         views={notes.views}
                         contributor={notes.contributor}
                         institution={notes.institution}
+                        loading={loading}
                       />
                     )
                   })}

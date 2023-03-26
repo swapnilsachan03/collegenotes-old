@@ -42,7 +42,7 @@ const Footer = () => {
             <HStack gap={["0", "10"]}>
               <VStack paddingTop={"3"} alignItems={"flex-start"} width={["50%", "unset"]}>
                 <Link to={"/contribute"} className={styles.footerLinks}>Contribute</Link>
-                <a href={"/subjects"} className={styles.footerLinks}>All Subjects</a>
+                <Link to={"/subjects"} reloadDocument={true} className={styles.footerLinks}>All Subjects</Link>
                 <Link to={"/about"} className={styles.footerLinks}>About Us</Link>
               </VStack>
 

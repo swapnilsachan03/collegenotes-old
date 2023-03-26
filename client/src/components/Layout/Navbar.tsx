@@ -42,7 +42,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
             display={["none", "none", "none", "flex", "flex"]}
           >
             <Link to={"/"} className={styles.navbarLinks}>Home</Link>
-            <a href={"/subjects"} className={styles.navbarLinks}>Subjects</a>
+            <Link to={"/subjects"} reloadDocument={true} className={styles.navbarLinks}>Subjects</Link>
             <Link to={"/contribute"} className={styles.navbarLinks}>Contribute</Link>
             <Link to={"/about"} className={styles.navbarLinks}>About</Link>
           </Flex>
@@ -53,7 +53,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
           >
             {isAuthenticated ?
               (<>
-                <a href="/user/profile">
+                <Link to="/user/profile" reloadDocument={true}>
                   <Button
                     size={"sm"}
                     colorScheme={"teal"}
@@ -61,7 +61,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
                   >
                     Profile
                   </Button>
-                </a>
+                </Link>
 
                 <Button
                   size={"sm"}
@@ -144,7 +144,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
           alignItems={"center"}
         >
           <Link to={"/"} className={styles.navbarLinksMobile} onClick={() => changeDisplay("none")}>Home</Link>
-          <Link to={"/subjects"} className={styles.navbarLinksMobile} onClick={() => changeDisplay("none")}>Subjects</Link>
+          <Link to={"/subjects"} reloadDocument={true} className={styles.navbarLinksMobile} onClick={() => changeDisplay("none")}>Subjects</Link>
           <Link to={"/contribute"} className={styles.navbarLinksMobile} onClick={() => changeDisplay("none")}>Contribute</Link>
           <Link to={"/about"} className={styles.navbarLinksMobile} onClick={() => changeDisplay("none")}>About</Link>
         </Flex>
@@ -152,7 +152,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
         <Flex marginTop={"10"}>
           {isAuthenticated ?
             (<>
-              <Link to="/user/profile">
+              <Link to="/user/profile" reloadDocument={true}>
                 <Button
                   size={"sm"}
                   colorScheme={"teal"}
@@ -168,10 +168,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
                 colorScheme={"teal"}
                 marginLeft={"2"}
                 leftIcon={<MdLogout/>}
-                onClick={() => {
-                  changeDisplay("none")
-                  logoutHandler()
-                }}
+                onClick={logoutHandler}
               >
                 Logout
               </Button>

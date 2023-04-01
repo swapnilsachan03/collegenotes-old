@@ -1,11 +1,15 @@
 import { Box, Button, Container, FormLabel, Heading, Input, VStack } from '@chakra-ui/react';
 import { useState, useEffect } from "react";
+import ReactGA from "react-ga4";
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePassword } from '../../redux/actions/profile';
 
 const ChangePassword = () => {
   document.title = "Change Password - CollegeNotes";
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
   
   const [oldPassword, setOldPassword] = useState<string>();
   const [newPassword, setNewPassword] = useState<string>();

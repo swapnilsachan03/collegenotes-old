@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Heading, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, Textarea, useColorMode, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, Heading, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, Textarea, useColorMode, VStack } from '@chakra-ui/react'
 import { useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
 import { HiPlus } from 'react-icons/hi';
@@ -83,14 +83,17 @@ const AdminNotesModal = ({
         <ModalCloseButton onClick={modalCloseHandler} />
 
         <ModalBody padding={["4", "6", "6", "16"]}>
-          <Grid templateColumns={["1fr", "1fr", "1fr 1fr", "7fr 4fr", "5fr, 2fr"]}>
-            <Box paddingRight={["0", "0", "6", "12"]}>
-              <Box marginBottom={"10"}>
-                <Heading children={subjectName} fontFamily={"Poppins"} size={"2xl"} />
-                <Text children={subjectID} fontFamily={"Inter"} size={"sm"} opacity={0.7} />
-              </Box>
+          <Box marginBottom={"10"}>
+            <Heading children={subjectName} fontFamily={"Poppins"} size={"2xl"} />
+            <Text children={subjectID} fontFamily={"Inter"} size={"sm"} opacity={0.7} />
+          </Box>
 
-              <Heading children="Available Notes" fontFamily={"Roboto"} fontWeight={"bold"} size={"lg"} marginBottom={"6"} />
+          <Grid
+            templateColumns={["1fr", "1fr", "1fr 1fr", "7fr 4fr", "5fr, 2fr"]}
+            gridAutoFlow={["row-reverse", "column"]}
+          >
+            <Flex direction={"column"} paddingRight={["0", "0", "6", "12"]}>
+              <Heading children="Available Notes" fontFamily={"Poppins"} fontWeight={"bold"} size={"lg"} marginBottom={"6"} />
 
               <VStack spacing={"3"}>
                 { notes.length > 0 ? (
@@ -120,13 +123,13 @@ const AdminNotesModal = ({
                   />
                 )}
               </VStack>
-            </Box>
+            </Flex>
 
             <Box>
               <form onSubmit={(e) => addNotesHandler(e)}>
-                  <Heading children="Add Notes" size={"lg"} fontFamily={"Poppins"} textAlign={"center"} marginBottom={"4"} />
+                <Heading children="Add Notes" size={"lg"} fontFamily={"Poppins"} textAlign={"center"} marginBottom={"4"} />
 
-                  <VStack spacing={"3"} width={"full"}>
+                <VStack spacing={"3"} width={"full"}>
                   <Input
                     size={"sm"}
                     borderRadius={"md"}
@@ -214,7 +217,7 @@ const AdminNotesModal = ({
                       isLoading={loading}
                     />
                   </HStack>
-                  </VStack>
+                </VStack>
               </form>
             </Box>
 

@@ -26,7 +26,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter SEO keywords"],
     minLength: [5, "Minimum 5 keyword characters required"],
-    maxLength: [50, "Maximum 50 keyword characters allowed"],
+    maxLength: [100, "Maximum 100 keyword characters allowed"],
   },
 
   id: {

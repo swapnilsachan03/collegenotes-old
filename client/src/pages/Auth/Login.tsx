@@ -1,5 +1,6 @@
 import { Box, Button, Container, FormLabel, Heading, Input, VStack } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ReactGA from "react-ga4";
 import { AnyAction } from "redux";
 import { useDispatch } from "react-redux";
 import { login } from '../../redux/actions/auth';
@@ -7,7 +8,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   document.title = "Login - CollegeNotes";
-  
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, [])
+
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const navigate = useNavigate();

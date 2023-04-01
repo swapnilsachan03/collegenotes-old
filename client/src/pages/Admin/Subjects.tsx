@@ -1,5 +1,6 @@
 import { Button, Flex, Heading, HStack, Input, InputGroup, InputRightElement, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import ReactGA from 'react-ga4';
 import { toast } from 'react-hot-toast';
 import { FaChevronDown, FaSearch } from 'react-icons/fa';
 import { RiDeleteBin4Fill } from 'react-icons/ri';
@@ -10,6 +11,9 @@ import { getAllSubjects } from '../../redux/actions/subject';
 
 const Subjects = () => {
   document.title = "Subjects Manager - CollegeNotes";
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
   
   const [keywords, setKeywords] = useState<string>("");
   const [degree, setDegree] = useState<string>("");
@@ -212,7 +216,7 @@ const Row = ({element, onOpen, setSubjectID}: any) => {
       <Td isNumeric>
         <HStack justifyContent={"flex-end"}>
           
-          <a href={`/admin/edit?id=${element.id}`} target={"_blank"} rel={"noreferrer"}>
+          <a href={`/admin/edit?id=${element.id}`}>
             <Button size={"sm"} variant={"outline"} colorScheme={"cyan"}>
               Edit Content
             </Button>

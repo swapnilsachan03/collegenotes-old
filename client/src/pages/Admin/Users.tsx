@@ -1,5 +1,6 @@
 import { Button, Flex, Heading, HStack, Stack, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import { useEffect } from 'react';
+import ReactGA from 'react-ga4';
 import { toast } from 'react-hot-toast';
 import { FaUserMinus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +9,9 @@ import { changeRole, deleteUser, getAllUsers } from '../../redux/actions/admin';
 
 const Users = () => {
   document.title = "Users Manager - CollegeNotes";
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
   
   const dispatch = useDispatch();
   const { users, loading, error, message } = useSelector((state: any) => state.admin);

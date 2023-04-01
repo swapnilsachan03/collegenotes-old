@@ -2,11 +2,16 @@ import ReviewCard from "../../components/ReviewCard"
 import { Button, Flex, Heading, HStack, Img, ListIcon, ListItem, Text, UnorderedList, VStack } from '@chakra-ui/react';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 import { RxArrowRight } from 'react-icons/rx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ReactGA from 'react-ga4';
 import { Link } from "react-router-dom";
 
 export default function Home() {
   document.title = "CollegeNotes -  A website for college students"
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: document.title })
+  }, []);
+
   const reviews = [
     {
       content: "CollegeNotes has been an absolute exam-time life saver for me. I can just simply consume video content on YouTube and read notes from here. This saves me a lot of time and spares me the pain of note taking. I would recommend this to everyone.",

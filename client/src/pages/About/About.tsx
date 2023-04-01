@@ -1,9 +1,14 @@
 import { Avatar, Flex, Heading, ListIcon, ListItem, Stack, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import { RxArrowRight } from 'react-icons/rx'
 import { Link } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import ReactGA from 'react-ga4';
 
-const about = () => {
+const About = () => {
   document.title = "About Us - CollegeNotes"
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: document.title })
+  }, []);
 
   return (
     <>
@@ -197,4 +202,4 @@ const about = () => {
   )
 }
 
-export default about
+export default About

@@ -6,9 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import SubjectCard from "../../components/SubjectCard";
 import { degrees, years } from "../../others/subjectProps";
 import { getAllSubjects } from "../../redux/actions/subject";
+import ReactGA from "react-ga4";
 
 const Subjects = () => {
   document.title = "CollegeNotes - Subject Browser";
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: document.title })
+  }, []);
 
   const [keywords, setKeywords] = useState<string>("");
   const [degree, setDegree] = useState<string>("");

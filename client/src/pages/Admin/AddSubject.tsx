@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import ReactGA from 'react-ga4';
 import 'react-quill/dist/quill.snow.css';
+import styles from "../../styles/Quill.module.css";
 import { Button, Flex, Heading, HStack, Image, Input, Select, Stack, Textarea, VStack } from '@chakra-ui/react';
 import { RiDraftFill, RiImageAddFill } from 'react-icons/ri';
 import { MdPublish } from 'react-icons/md';
@@ -13,6 +15,9 @@ import { degrees, years } from '../../others/subjectProps';
 
 const AddSubject = () => {
   document.title = "Add Subject - CollegeNotes";
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
   
   const modules = {
     toolbar: [
@@ -276,6 +281,7 @@ const AddSubject = () => {
               justifyContent={"space-between"}
               marginTop={"5"}
               width={["auto", "auto", "container.md"]}
+              className={styles.container}
             >
               <Flex height={"450px"} width={["auto", "auto", "100%"]}>
                 <ReactQuill modules={modules} value={beforeNotes} onChange={setBeforeNotes} theme="snow" style={{width: "100%"}} />
@@ -298,15 +304,6 @@ const AddSubject = () => {
             </VStack>
           </Flex>
         </form>
-
-        {/* <NotesModal
-          subjectID={subject.subjectID}
-          subjectTitle={subject.title}
-          isOpen={isOpen}
-          onClose={onClose}
-          deleteNotesHandler={deleteNotesHandler}
-          addNotesHandler={addNotesHandler}
-        /> */}
       </Stack>
     </Flex>
     </>

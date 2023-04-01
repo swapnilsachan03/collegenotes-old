@@ -11,7 +11,7 @@ const AdminNotesCard = ({title, id, _id, url, dbSubjectID, index, views, contrib
 
   return (
     <Stack
-      direction={"row"}
+      direction={["column", "column", "column", "column", "row"]}
       width={"full"}
       alignItems={"flex-start"}
       justifyContent={"space-between"}
@@ -25,7 +25,7 @@ const AdminNotesCard = ({title, id, _id, url, dbSubjectID, index, views, contrib
         <Heading as={"h4"} children={`${index+1}.`} fontFamily={"Inter"} size={"md"} />
 
         <Stack direction={"column"} justifyContent={"space-between"}>
-          <HStack>
+          <Stack direction={["column", "row"]}>
             <Heading
               as={"h4"}
               textAlign={"left"}
@@ -39,7 +39,7 @@ const AdminNotesCard = ({title, id, _id, url, dbSubjectID, index, views, contrib
               size={"md"}
               children={`by ${contributor}`}
             />
-          </HStack>
+          </Stack>
 
           <Text
             fontSize={"14px"}
@@ -54,22 +54,24 @@ const AdminNotesCard = ({title, id, _id, url, dbSubjectID, index, views, contrib
         </Stack>
       </HStack>
 
-      <HStack justifyContent="flex-end" paddingTop={"1"}>
-        <Link to={`/notes/${id}`}>
-          <Button colorScheme={"cyan"} variant={"outline"} size={"sm"} leftIcon={<FiArrowUpRight />}>
-            Open
-          </Button>
-        </Link>
+      <HStack width={["100%", "100%", "100%", "100%", "unset"]} justifyContent="flex-end" paddingTop={"1"}>
+        <HStack>
+          <Link to={`/notes/${id}`}>
+            <Button colorScheme={"cyan"} variant={"outline"} size={"sm"} leftIcon={<FiArrowUpRight />}>
+              Open
+            </Button>
+          </Link>
 
-        <a href={url} target={"_blank"} rel={"noreferrer"}>
-          <Button colorScheme={"cyan"} size={"sm"}>
-            <FaDownload />
+          <a href={url} target={"_blank"} rel={"noreferrer"}>
+            <Button colorScheme={"cyan"} size={"sm"}>
+              <FaDownload />
+            </Button>
+          </a>
+        
+          <Button colorScheme={"red"} size={"sm"} isLoading={loading} onClick={() => deleteNotesHandler(_id, dbSubjectID)}>
+            <RiDeleteBin4Fill />
           </Button>
-        </a>
-      
-        <Button colorScheme={"red"} size={"sm"} isLoading={loading} onClick={() => deleteNotesHandler(_id, dbSubjectID)}>
-          <RiDeleteBin4Fill />
-        </Button>
+        </HStack>
       </HStack>
     </Stack>
   );

@@ -1,7 +1,12 @@
 import { Heading, Image, VStack } from "@chakra-ui/react"
+import { useEffect } from "react";
+import ReactGA from "react-ga4";
 
 const NotFound = () => {
   document.title = "404 Not Found - CollegeNotes"
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
   
   return (
     <VStack height={"95vh"} alignItems={"center"} justifyContent={"center"} gap={"8"}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ColorModeSwitcher from "./ColorModeSwitcher";
 import { Button, Flex, Heading, IconButton, Stack, useColorModeValue } from "@chakra-ui/react";
@@ -132,7 +132,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
           top={"0"} right={"0"}
           aria-label='Close menu'
           size={"md"}
-          marginRight={"4"}
+          marginRight={["0", "4"]}
           marginTop={"2"}
           variant={"ghost"}
           icon={<RxCross1 />}

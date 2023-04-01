@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import ReactGA from 'react-ga4';
+import styles from "../../styles/Quill.module.css";
 import 'react-quill/dist/quill.snow.css';
 import { Button, Flex, Heading, HStack, Image, Input, Select, Stack, Textarea, useDisclosure, VStack } from '@chakra-ui/react';
 import { RiImageAddFill } from 'react-icons/ri';
@@ -55,6 +57,9 @@ const EditSubject = () => {
     setKeywords(subject?.seoKeywords);
     setNotes(subject?.notes);
     setPosterPrev(subject?.poster.url);
+
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+    // eslint-disable-next-line
   }, [subject?.title]);
 
   const { loading: adminLoading, error: adminError, message: adminMessage } = useSelector((state: any) => state.admin);
@@ -325,6 +330,7 @@ const EditSubject = () => {
                 justifyContent={"space-between"}
                 marginTop={"5"}
                 width={["auto", "auto", "container.md"]}
+                className={styles.container}
               >
                 <Flex height={"450px"} width={["auto", "auto", "100%"]}>
                   <ReactQuill modules={modules} value={beforeNotes} onChange={setBeforeNotes} theme="snow" style={{width: "100%"}} />

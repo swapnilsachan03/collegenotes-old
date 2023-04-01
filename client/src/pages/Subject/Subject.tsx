@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import ReactGA from "react-ga4";
 import { Flex, Heading, HStack, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import styles from "../../styles/Subject.module.css"
 import parse from "html-react-parser"
@@ -19,6 +20,10 @@ const Subject = () => {
 
   const { subject, error, message, loading } = useSelector((state: any) => state.subjects);
   document.title = subject ? (subject.title + " - Notes, PYQs and more on CollegeNotes") : "Loading - CollegeNotes";
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, [subject])
 
   useEffect(() => {
     if(error) {
@@ -118,8 +123,7 @@ const Subject = () => {
                       />
                     )
                   })}
-                </HStack>
-              ) : (
+                </HStack> ) : (
 
                 <Text
                   children={"No notes are available for this subject."}
@@ -130,7 +134,6 @@ const Subject = () => {
                   opacity={"0.7"}
                 />
               )}
-              
 
               {parse(subject.afterNotesContent)};
             </Stack>

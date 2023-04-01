@@ -1,4 +1,5 @@
 import { Flex, Heading, HStack, Link, Stack, Text, useColorMode, VStack } from "@chakra-ui/react";
+import ReactGA from "react-ga4";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +15,10 @@ const Notes = () => {
   const params = useParams();
   const { notes, error, loading } = useSelector((state: any) => state.subjects);
   document.title = notes ? (notes.title + " - CollegeNotes") : "Loading - CollegeNotes";
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, [notes])
 
   useEffect(() => {
     dispatch(getNotes(params.id) as any);

@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, HStack, useColorMode, Stack, Text } from '@chakra-ui/react'
+import ReactGA from 'react-ga4';
 import { RiArrowDownLine, RiArrowUpLine } from 'react-icons/ri'
 import AdminNav from '../../components/AdminNav'
 import { LineChart } from '../../components/AdminChart'
@@ -9,6 +10,9 @@ import Loader from '../../components/Layout/Loader'
 
 const Dashboard = () => {
   document.title = "CollegeNotes Admin Dashboard";
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
   
   const { colorMode } = useColorMode();
   const cardBorderColor = colorMode === 'light' ? "#9DECF9" : "#086F83";

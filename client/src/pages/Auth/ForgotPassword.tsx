@@ -1,13 +1,17 @@
 import { Box, Button, Container, FormLabel, Heading, Input, VStack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import ReactGA from "react-ga4";
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword } from '../../redux/actions/profile';
 
 const ForgotPassword = () => {
   document.title = "CollegeNotes Account Recovery";
-  const [email, setEmail] = useState<string>();
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
 
+  const [email, setEmail] = useState<string>();
   const { loading, error, message } = useSelector((state: any) => state.profile);
   const dispatch = useDispatch();
 

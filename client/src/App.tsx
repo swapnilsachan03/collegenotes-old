@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ReactGA from "react-ga4";
 import { useEffect } from 'react';
 import { getUser } from './redux/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,6 +28,9 @@ import NotFound from './components/Layout/NotFound';
 import Loader from './components/Layout/Loader';
 import ChangePassword from './pages/User/ChangePassword';
 import EditSubject from './pages/Admin/EditSubject';
+
+const TRACKING_ID = "G-M2VTB22JD3";
+ReactGA.initialize(TRACKING_ID);
 
 function App() {
   const dispatch = useDispatch();

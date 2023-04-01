@@ -50,6 +50,7 @@ export const getSubjectContent = catchAsyncError(async (req, res, next) => {
   
   subject.poster.url = await getObjectSignedUrl(subject.poster.fileName);
   subject.icon.url = await getObjectSignedUrl(subject.icon.fileName);
+  subject.notes.sort((a, b) => b.createdAt - a.createdAt);
   subject.views += 1;
   await subject.save();
 

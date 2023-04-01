@@ -1,14 +1,16 @@
 import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Avatar, Box, Button, Container, FormLabel, HStack, Input, useDisclosure, VStack } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import { BsFillExclamationCircleFill } from 'react-icons/bs';
+import ReactGA from "react-ga4";
+import React, { useState, useEffect } from 'react';
 import { FaExclamation } from 'react-icons/fa';
-import { MdWarning } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/actions/auth';
 import { fileUploadCSS } from "../../styles/fileUploadCSS";
 
 const Register = () => {
   document.title = "Register - CollegeNotes";
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
   
   const [name, setName] = useState("");
   const [imagePrev, setImagePrev] = useState("");

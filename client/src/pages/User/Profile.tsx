@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Container, FormLabel, Heading, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, VStack } from '@chakra-ui/react';
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import ReactGA from 'react-ga4';
 import { FaUserEdit, FaDonate, FaUserMinus } from 'react-icons/fa';
 import { RiDashboardFill, RiImageEditFill } from 'react-icons/ri';
 import { BsPersonCheckFill } from 'react-icons/bs';
@@ -13,6 +14,9 @@ import ProfileNotesCard from '../../components/ProfileNotesCard';
 
 const Profile = ({ user }: any) => {
   document.title = "Member Profile - CollegeNotes";
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
+  }, []);
   
   const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclosure();
   const {isOpen: isDeleteOpen, onOpen: onDeleteOpen, onClose: onDeleteClose} = useDisclosure();

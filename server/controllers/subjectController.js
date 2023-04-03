@@ -77,7 +77,7 @@ export const getNotes = catchAsyncError(async (req, res, next) => {
   notes.views += 1;
   await notes.save();
   
-  const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+  const stats = await Stats.find({}).sort({ views: "desc" }).limit(1);
   stats[0].views += 1;
   await stats[0].save();
 

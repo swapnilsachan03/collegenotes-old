@@ -59,7 +59,7 @@ const NotesCard = ({_id, views, title, imageSrc, id, contributor, institution, l
         size={"xs"}
         fontSize={"13px"}
         fontStyle={"italic"}
-        children={`Source / Institution: ${institution}`}
+        children={`Source: ${institution}`}
       />
 
       <HStack justifyContent="flex-end" width={"100%"} paddingTop={"1"}>

@@ -66,9 +66,9 @@ const Footer = () => {
             />
 
             <HStack paddingTop={["1.5", "3"]}>
-              <a href={"https://www.instagram.com/swapnilsachan03/"} target={"_blank"} rel="noreferrer" className={socialTheme}><RiInstagramLine/></a>
               <a href={"https://www.linkedin.com/in/swapnilsachan03/"} target={"_blank"} rel="noreferrer" className={socialTheme}><RiLinkedinFill/></a>
               <a href={"https://www.github.com/swapnil-sachan/"} target={"_blank"} rel="noreferrer" className={socialTheme}><RiGithubFill/></a>
+              <a href={"https://www.instagram.com/swapnilsachan03/"} target={"_blank"} rel="noreferrer" className={socialTheme}><RiInstagramLine/></a>
             </HStack>
           </Stack>
         </Stack>

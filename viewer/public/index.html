@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document Viewer - CollegeNotes</title>
+    <meta name='description' content='The PDF renderer for the CollegeNotes website.'/>
+    
+    <!-- Basic meta tags -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <!-- Favicon integration -->
+    
+    <link rel="icon" href="%PUBLIC_URL%/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon/apple-touch-icon.png" />
+
+    <!-- Metadata for Open Graph protocol. See http://ogp.me/. -->
+
+    <meta property='og:type' content='website'/>
+    <meta property='og:url' content='https://viewer.collegenotes.co.in/'/>
+    <meta property='og:site_name' content='CollegeNotes'/>
+    <meta property='og:title' content='Document Viewer - CollegeNotes'/>
+    <meta property='og:description' content='The PDF renderer for the CollegeNotes website.'/>
+    <meta property="og:image" content="/image-src/title-image.png">
+
+    <!-- Twitter meta tags -->
+
+    <meta content='summary_large_image' name='twitter:card'/>
+    <meta content='collegenotes.co.in/' name='twitter:domain'/>
+    <meta content='https://viewer.collegenotes.co.in/' name='twitter:url'/>
+    <meta content='Document Viewer - CollegeNotes' name='twitter:title'/>
+    <meta content='The PDF renderer for the CollegeNotes website.' name='twitter:description'/>
+    <meta name="twitter:image" content="/image-src/title-image.png">
+
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Google fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='true' />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Raleway:wght@200&family=Poppins:wght@700&family=Roboto:wght@400;700&family=Roboto+Condensed&family=Source+Serif+Pro:wght@700;900&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <script src="https://documentcloud.adobe.com/view-sdk/viewer.js"></script>
+  </body>
+</html>

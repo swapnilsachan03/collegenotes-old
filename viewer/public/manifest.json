@@ -1,6 +1,6 @@
 {
-  "short_name": "CollegeNotes",
-  "name": "CollegeNotes - A web app for college students",
+  "short_name": "CollegeNotes Viewer",
+  "name": "CollegeNotes Document Viewer",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

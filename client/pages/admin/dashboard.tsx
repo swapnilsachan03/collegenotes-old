@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { getDashboardStats } from '../../redux/actions/admin'
 import Loader from '../../components/Layout/Loader'
 import ProtectedRoute from '@/others/ProtectedRoute';
+import Head from 'next/head';
 
 const Dashboard = ({ isAdmin }: any) => {
   document.title = "CollegeNotes Admin Dashboard";
@@ -57,6 +58,17 @@ const Dashboard = ({ isAdmin }: any) => {
 
   return (
     <>
+    <Head>
+      <title>CollegeNotes Admin Dashboard</title>
+      <meta name='description' content='Admin only dashboard route for CollegeNotes.'/>
+
+      <meta property='og:title' content='CollegeNotes Admin Dashboard'/>
+      <meta property='og:description' content='Admin only dashboard route for CollegeNotes.'/>
+
+      <meta content='CollegeNotes Admin Dashboard' name='twitter:title'/>
+      <meta content='Admin only dashboard route for CollegeNotes.' name='twitter:description'/>
+    </Head>
+    
     <AdminNav />
 
     { loading || !stats ? ( <Loader color={"cyan.400"} /> ) : (

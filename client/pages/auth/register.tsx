@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../redux/actions/auth';
 import { fileUploadCSS } from "../../styles/fileUploadCSS";
 import ProtectedRoute from '@/others/ProtectedRoute';
+import Head from 'next/head';
 
 const Register = () => {
   useEffect(() => {
@@ -52,6 +53,18 @@ const Register = () => {
   }
 
   return (
+    <>
+    <Head>
+      <title>Register - CollegeNotes</title>
+      <meta name='description' content='Register on CollegeNotes to experience full website functionality.'/>
+
+      <meta property='og:title' content='Register - CollegeNotes'/>
+      <meta property='og:description' content='Register on CollegeNotes to experience full website functionality.'/>
+
+      <meta content='Register - CollegeNotes' name='twitter:title'/>
+      <meta content='Register on CollegeNotes to experience full website functionality.' name='twitter:description'/>
+    </Head>
+    
     <Container h={"95vh"} width={["90%", "20em"]}>
       <VStack h={"full"} justifyContent={"center"} spacing={"8"}>
 
@@ -168,6 +181,7 @@ const Register = () => {
         </AlertDialogContent>
       </AlertDialog>
     </Container>
+    </>
   )
 }
 

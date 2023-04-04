@@ -1,5 +1,6 @@
 import ProtectedRoute from '@/others/ProtectedRoute';
 import { Box, Button, Container, FormLabel, Heading, Input, VStack } from '@chakra-ui/react';
+import Head from 'next/head';
 import { useState, useEffect } from "react";
 import ReactGA from "react-ga4";
 import { toast } from 'react-hot-toast';
@@ -36,6 +37,18 @@ const ChangePassword = () => {
   }
 
   return (
+    <>
+    <Head>
+      <title>Change Password - CollegeNotes</title>
+      <meta name='description' content='Change your CollegeNotes account passsword using the old one.'/>
+
+      <meta property='og:title' content='Change Password - CollegeNotes'/>
+      <meta property='og:description' content='Change your CollegeNotes account passsword using the old one.'/>
+
+      <meta content='Change Password - CollegeNotes' name='twitter:title'/>
+      <meta content='Change your CollegeNotes account passsword using the old one.' name='twitter:description'/>
+    </Head>
+    
     <Container h={"95vh"} width={["90%", "20em"]}>
       <VStack h={"full"} justifyContent={"center"} spacing={"6"}>
         <Heading fontFamily={"Roboto Condensed"} size={"lg"} children={"Change Password"} />
@@ -77,6 +90,7 @@ const ChangePassword = () => {
         </form>
       </VStack>
     </Container>
+    </>
   )
 }
 

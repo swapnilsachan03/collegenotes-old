@@ -1,5 +1,6 @@
 import ProtectedRoute from '@/others/ProtectedRoute';
 import { Button, Flex, Heading, HStack, Input, InputGroup, InputRightElement, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import ReactGA from 'react-ga4';
 import { toast } from 'react-hot-toast';
@@ -11,7 +12,6 @@ import { deleteSubject } from '../../redux/actions/admin';
 import { getAllSubjects } from '../../redux/actions/subject';
 
 const Subjects = () => {
-  document.title = "Subjects Manager - CollegeNotes";
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
   }, []);
@@ -56,6 +56,17 @@ const Subjects = () => {
 
   return (
     <>
+    <Head>
+      <title>Subjects Manager - CollegeNotes</title>
+      <meta name='description' content='Manage all subjects and edit subject content - Admin only route.'/>
+
+      <meta property='og:title' content='Subjects Manager - CollegeNotes'/>
+      <meta property='og:description' content='Manage all subjects and edit subject content - Admin only route.'/>
+
+      <meta content='Subjects Manager - CollegeNotes' name='twitter:title'/>
+      <meta content='Manage all subjects and edit subject content - Admin only route.' name='twitter:description'/>
+    </Head>
+
     <AdminNav />
     <Flex
       minH={"90vh"}

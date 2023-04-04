@@ -3,6 +3,7 @@ import { RxArrowRight } from 'react-icons/rx'
 import { Link } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import ReactGA from 'react-ga4';
+import Head from 'next/head';
 
 const About = () => {
   useEffect(() => {
@@ -11,6 +12,17 @@ const About = () => {
 
   return (
     <>
+    <Head>
+      <title>About Us - CollegeNotes</title>
+      <meta name='description' content='All about the CollegeNotes platform - the beginning, the journey and the present!'/>
+
+      <meta property='og:title' content='About Us - CollegeNotes'/>
+      <meta property='og:description' content='All about the CollegeNotes platform - the beginning, the journey and the present!'/>
+
+      <meta content='About Us - CollegeNotes' name='twitter:title'/>
+      <meta content='All about the CollegeNotes platform - the beginning, the journey and the present!' name='twitter:description'/>
+    </Head>
+    
     <Flex
       width={"100%"}
       height={["10em", "12em", "15em"]}

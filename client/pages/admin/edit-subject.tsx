@@ -16,6 +16,7 @@ import AdminNotesModal from '../../components/AdminNotesModal';
 import { BsFilePdfFill } from 'react-icons/bs';
 import { degrees, years } from '../../others/subjectProps';
 import ProtectedRoute from '@/others/ProtectedRoute';
+import Head from 'next/head';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
@@ -150,6 +151,17 @@ const EditSubject = () => {
 
   return (
     <>
+    <Head>
+      <title>{subject ? `Edit ${subject.title} - CollegeNotes` : `Loading - CollegeNotes`}</title>
+      <meta name='description' content='Edit any subject on CollegeNotes.'/>
+
+      <meta property='og:title' content={subject ? `Edit ${subject.title} - CollegeNotes` : `Loading - CollegeNotes`}/>
+      <meta property='og:description' content='Edit any subject on CollegeNotes.'/>
+
+      <meta content={subject ? `Edit ${subject.title} - CollegeNotes` : `Loading - CollegeNotes`} name='twitter:title'/>
+      <meta content='Edit any subject on CollegeNotes.' name='twitter:description'/>
+    </Head>
+    
     <Flex
       minH={["125vh", "95vh"]}
       width={"100%"}

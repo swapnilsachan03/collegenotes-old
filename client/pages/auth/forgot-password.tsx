@@ -1,5 +1,6 @@
 import ProtectedRoute from '@/others/ProtectedRoute';
 import { Box, Button, Container, FormLabel, Heading, Input, VStack } from '@chakra-ui/react';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import ReactGA from "react-ga4";
 import { toast } from 'react-hot-toast';
@@ -33,6 +34,18 @@ const ForgotPassword = () => {
   }
 
   return (
+    <>
+    <Head>
+      <title>CollegeNotes Account Recovery</title>
+      <meta name='description' content='Account recovery for CollegeNotes in case of forgetting password - send a password reset link to your registered email.'/>
+
+      <meta property='og:title' content='CollegeNotes Account Recovery'/>
+      <meta property='og:description' content='Account recovery for CollegeNotes in case of forgetting password - send a password reset link to your registered email.'/>
+
+      <meta content='CollegeNotes Account Recovery' name='twitter:title'/>
+      <meta content='Account recovery for CollegeNotes in case of forgetting password - send a password reset link to your registered email.' name='twitter:description'/>
+    </Head>
+    
     <Container h={"95vh"} width={["90%", "20em"]}>
       <VStack h={"full"} justifyContent={"center"} spacing={"6"}>
         <Heading
@@ -63,6 +76,7 @@ const ForgotPassword = () => {
         </form>
       </VStack>
     </Container>
+    </>
   )
 }
 

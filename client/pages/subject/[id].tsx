@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSubject } from '../../redux/actions/subject';
 import { toast } from "react-hot-toast";
 import Loader from "../../components/Layout/Loader";
+import Head from "next/head";
 
 const Subject = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ const Subject = () => {
   }, [dispatch, id])
 
   const { subject, error, message, loading } = useSelector((state: any) => state.subjects);
-  document.title = subject ? (subject.title + " - Notes, PYQs and more on CollegeNotes") : "Loading - CollegeNotes";
 
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
@@ -39,6 +39,18 @@ const Subject = () => {
   }, [error, message, dispatch])
 
   return (
+    <>
+    <Head>
+      <title>{subject ? `${subject.title} - Notes, PYQs and more on CollegeNotes` : `Loading - CollegeNotes`}</title>
+      <meta name='description' content={subject?.seoDescriptioin}/>
+
+      <meta property='og:title' content={subject ? `${subject.title} - Notes, PYQs and more on CollegeNotes` : `Loading - CollegeNotes`}/>
+      <meta property='og:description' content={subject?.seoDescriptioin}/>
+
+      <meta content={subject ? `${subject.title} - Notes, PYQs and more on CollegeNotes` : `Loading - CollegeNotes`} name='twitter:title'/>
+      <meta content={subject?.seoDescriptioin} name='twitter:description'/>
+    </Head>
+
     <Flex
       minH={"100vh"}
       width={"100%"}
@@ -142,6 +154,7 @@ const Subject = () => {
         </Stack>
       )}
     </Flex>
+    </>
   )
 }
 

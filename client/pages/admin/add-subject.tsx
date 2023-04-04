@@ -12,6 +12,7 @@ import { addSubject } from '../../redux/actions/admin';
 import toast from 'react-hot-toast';
 import { degrees, years } from '../../others/subjectProps';
 import ProtectedRoute from '@/others/ProtectedRoute';
+import Head from 'next/head';
 
 const QuillNoSSRWrapper = dynamic(import('react-quill'), {
   ssr: false,
@@ -19,7 +20,6 @@ const QuillNoSSRWrapper = dynamic(import('react-quill'), {
 })
 
 const AddSubject = () => {
-  document.title = "Add Subject - CollegeNotes";
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
   }, []);
@@ -114,6 +114,17 @@ const AddSubject = () => {
 
   return (
     <>
+    <Head>
+      <title>Add Subject - CollegeNotes</title>
+      <meta name='description' content='Admin only route for adding a subject to CollegeNotes.'/>
+
+      <meta property='og:title' content='Add Subject - CollegeNotes'/>
+      <meta property='og:description' content='Admin only route for adding a subject to CollegeNotes.'/>
+
+      <meta content='Add Subject - CollegeNotes' name='twitter:title'/>
+      <meta content='Admin only route for adding a subject to CollegeNotes.' name='twitter:description'/>
+    </Head>
+    
     <AdminNav/>
     <Flex
       minH={["125vh", "95vh"]}

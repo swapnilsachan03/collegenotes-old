@@ -5,6 +5,7 @@ import { RxArrowRight } from 'react-icons/rx';
 import { useEffect, useState } from 'react';
 import ReactGA from 'react-ga4';
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Home() {
   useEffect(() => {
@@ -57,6 +58,17 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>CollegeNotes - A website for college students</title>
+        <meta name='description' content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.'/>
+
+        <meta property='og:title' content='CollegeNotes - A website for college students'/>
+        <meta property='og:description' content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.'/>
+
+        <meta content='CollegeNotes - A website for college students' name='twitter:title'/>
+        <meta content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.' name='twitter:description'/>
+      </Head>
+
       <main style={{fontFamily: "Inter"}}>
         <Flex
           width={"100%"}

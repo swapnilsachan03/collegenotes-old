@@ -1,5 +1,6 @@
 import ProtectedRoute from '@/others/ProtectedRoute';
 import { Button, Flex, Heading, HStack, Stack, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import Head from 'next/head';
 import { useEffect } from 'react';
 import ReactGA from 'react-ga4';
 import { toast } from 'react-hot-toast';
@@ -41,6 +42,17 @@ const Users = () => {
 
   return (
     <>
+    <Head>
+      <title>Users Manager - CollegeNotes</title>
+      <meta name='description' content='Manage all users, change their roles and delete profile - Admin only route.'/>
+
+      <meta property='og:title' content='Subjects Manager - CollegeNotes'/>
+      <meta property='og:description' content='Manage all users, change their roles and delete profile - Admin only route.'/>
+
+      <meta content='Subjects Manager - CollegeNotes' name='twitter:title'/>
+      <meta content='Manage all users, change their roles and delete profile - Admin only route.' name='twitter:description'/>
+    </Head>
+
     <AdminNav />
     <Flex
       minH={"90vh"}

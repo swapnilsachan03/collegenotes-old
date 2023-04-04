@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { resetPassword } from '../../../redux/actions/profile';
 import ProtectedRoute from '@/others/ProtectedRoute';
+import Head from 'next/head';
 
 const ResetPassword = () => {
   const router = useRouter();
@@ -39,6 +40,18 @@ const ResetPassword = () => {
   }
 
   return (
+    <>
+    <Head>
+      <title>Reset Password - CollegeNotes</title>
+      <meta name='description' content='Reset CollegeNotes password using the password reset link you received on your registered email.'/>
+
+      <meta property='og:title' content='Reset Password - CollegeNotes'/>
+      <meta property='og:description' content='Reset CollegeNotes password using the password reset link you received on your registered email.'/>
+
+      <meta content='Reset Password - CollegeNotes' name='twitter:title'/>
+      <meta content='Reset CollegeNotes password using the password reset link you received on your registered email.' name='twitter:description'/>
+    </Head>
+    
     <Container h={"95vh"} width={["90%", "20em"]}>
       <VStack h={"full"} justifyContent={"center"} spacing={"6"}>
         <Heading
@@ -91,6 +104,7 @@ const ResetPassword = () => {
         </form>
       </VStack>
     </Container>
+    </>
   )
 }
 

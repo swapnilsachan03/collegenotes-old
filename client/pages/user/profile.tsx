@@ -13,6 +13,7 @@ import { toast } from 'react-hot-toast';
 import ProfileSubjectCard from '../../components/ProfileSubjectCard';
 import ProfileNotesCard from '../../components/ProfileNotesCard';
 import ProtectedRoute from '@/others/ProtectedRoute';
+import Head from 'next/head';
 
 const Profile = ({ user, isAuthenticated }: any) => {
   useEffect(() => {
@@ -24,6 +25,17 @@ const Profile = ({ user, isAuthenticated }: any) => {
   const memberSince = new Date(user.createdAt);
 
   return (
+    <>
+    <Head>
+      <title>Member Profile - CollegeNotes</title>
+      <meta name='description' content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.'/>
+
+      <meta property='og:title' content='Member Profile - CollegeNotes'/>
+      <meta property='og:description' content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.'/>
+
+      <meta content='Member Profile - CollegeNotes' name='twitter:title'/>
+      <meta content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.' name='twitter:description'/>
+    </Head>
     <Container minH={"95vh"} maxW={"container.lg"} paddingY={"8"}>
       <Heading
         as={"h1"}
@@ -206,6 +218,7 @@ const Profile = ({ user, isAuthenticated }: any) => {
       <UpdateProfile user={user} isEditOpen={isEditOpen} onEditClose={onEditClose} onDeleteOpen={onDeleteOpen} />
       <DeleteProfile isDeleteOpen={isDeleteOpen} onDeleteClose={onDeleteClose} onDeleteOpen={onDeleteOpen} />
     </Container>
+    </>
   )
 }
 

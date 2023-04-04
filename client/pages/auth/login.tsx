@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { login } from '../../redux/actions/auth';
 import ProtectedRoute from '@/others/ProtectedRoute';
+import Head from 'next/head';
 
 const Login = () => {
   useEffect(() => {
@@ -26,6 +27,18 @@ const Login = () => {
   }
 
   return (
+    <>
+    <Head>
+      <title>Login - CollegeNotes</title>
+      <meta name='description' content='Login to CollegeNotes.'/>
+
+      <meta property='og:title' content='Login - CollegeNotes'/>
+      <meta property='og:description' content='Login to CollegeNotes.'/>
+
+      <meta content='Login - CollegeNotes' name='twitter:title'/>
+      <meta content='Login to CollegeNotes.' name='twitter:description'/>
+    </Head>
+    
     <Container h={"95vh"} width={["90%", "20em"]}>
       <VStack h={"full"} justifyContent={"center"} spacing={"6"}>
         <Heading fontFamily={"Roboto Condensed"} size={"lg"} children={"Login"} />
@@ -85,6 +98,7 @@ const Login = () => {
         </form>
       </VStack>
     </Container>
+    </>
   )
 }
 

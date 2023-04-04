@@ -56,7 +56,7 @@ const AdminNotesCard = ({title, id, _id, url, dbSubjectID, index, views, contrib
 
       <HStack width={["100%", "100%", "100%", "100%", "unset"]} justifyContent="flex-end" paddingTop={"1"}>
         <HStack>
-          <Link href={`/notes/${id}`}>
+          <Link href={`https://viewer.collegenotes.co.in/notes/${id}`}>
             <Button colorScheme={"cyan"} variant={"outline"} size={"sm"} leftIcon={<FiArrowUpRight />}>
               Open
             </Button>

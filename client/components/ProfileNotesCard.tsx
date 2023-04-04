@@ -85,7 +85,7 @@ const ProfileNotesCard = ({_id, views, title, id, contributor, institution}: any
       />
 
       <HStack justifyContent="flex-end" width={"100%"} paddingTop={"1"}>
-        <Link href={`/notes/${id}`}>
+        <Link href={`https://viewer.collegenotes.co.in/notes/${id}`}>
           <Button colorScheme={"teal"} size={"sm"} leftIcon={<FiArrowUpRight />}>
             Open
           </Button>

@@ -1,7 +1,6 @@
 import { Box, Button, Container, FormLabel, Heading, Input, VStack } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import ReactGA from "react-ga4";
-import { AnyAction } from "redux";
 import { useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -22,7 +21,7 @@ const Login = () => {
 
   const submitHandler = (e: Event) => {
     e.preventDefault();
-    dispatch(login(email, password) as unknown as AnyAction);
+    dispatch(login(email, password) as any);
     router.push("/");
   }
 

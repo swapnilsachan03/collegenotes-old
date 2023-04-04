@@ -9,7 +9,6 @@ import { RxHamburgerMenu, RxCross1 } from "react-icons/rx"
 import styles from "../../styles/Navbar.module.css";
 import { logout } from '../../redux/actions/auth';
 import { useDispatch } from 'react-redux';
-import { AnyAction } from "redux";
 
 const Navbar = ({ isAuthenticated = false }: any) => {
   const [display, changeDisplay] = useState("none");
@@ -17,7 +16,7 @@ const Navbar = ({ isAuthenticated = false }: any) => {
   const router = useRouter();
 
   const logoutHandler = () => {
-    dispatch(logout() as unknown as AnyAction);
+    dispatch(logout() as unknown as any);
     router.push("/");
   }
 

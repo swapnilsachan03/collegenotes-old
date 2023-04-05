@@ -58,11 +58,11 @@ const Register = () => {
       <title>Register - CollegeNotes</title>
       <meta name='description' content='Register on CollegeNotes to experience full website functionality.'/>
 
-      <meta property='og:title' content='Register - CollegeNotes'/>
-      <meta property='og:description' content='Register on CollegeNotes to experience full website functionality.'/>
+      <meta property='og:title' content='Register - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='Register on CollegeNotes to experience full website functionality.' key={"og-description"} />
 
-      <meta content='Register - CollegeNotes' name='twitter:title'/>
-      <meta content='Register on CollegeNotes to experience full website functionality.' name='twitter:description'/>
+      <meta content='Register - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='Register on CollegeNotes to experience full website functionality.' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <Container h={"95vh"} width={["90%", "20em"]}>

@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changePassword } from '../../redux/actions/profile';
 
 const ChangePassword = () => {
-  document.title = "Change Password - CollegeNotes";
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
   }, []);
@@ -42,11 +41,11 @@ const ChangePassword = () => {
       <title>Change Password - CollegeNotes</title>
       <meta name='description' content='Change your CollegeNotes account passsword using the old one.'/>
 
-      <meta property='og:title' content='Change Password - CollegeNotes'/>
-      <meta property='og:description' content='Change your CollegeNotes account passsword using the old one.'/>
+      <meta property='og:title' content='Change Password - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='Change your CollegeNotes account passsword using the old one.' key={"og-description"} />
 
-      <meta content='Change Password - CollegeNotes' name='twitter:title'/>
-      <meta content='Change your CollegeNotes account passsword using the old one.' name='twitter:description'/>
+      <meta content='Change Password - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='Change your CollegeNotes account passsword using the old one.' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <Container h={"95vh"} width={["90%", "20em"]}>

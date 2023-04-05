@@ -1,18 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { ChakraProvider } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppProps } from 'next/app'
+import ReactGA from "react-ga4";
 import Navbar from '@/components/Layout/Navbar';
 import Footer from '@/components/Layout/Footer';
 import { getUser } from "../redux/actions/auth";
+import toast, { Toaster } from "react-hot-toast";
 import '@/styles/globals.css'
-import { ChakraProvider } from '@chakra-ui/react';
-import { useDispatch, useSelector } from 'react-redux';
 import store from "../redux/store"
-import type { AppProps } from 'next/app'
 import theme from '@/config/theme';
 import { createWrapper } from 'next-redux-wrapper';
-import toast, { Toaster } from "react-hot-toast";
 import Loader from "@/components/Layout/Loader";
 
 const wrapper = createWrapper(store);
+
+const TRACKING_ID = "G-M2VTB22JD3";
+ReactGA.initialize(TRACKING_ID);
 
 function App({ Component, ...rest }: AppProps) {
   const { props } = wrapper.useWrappedStore(rest);

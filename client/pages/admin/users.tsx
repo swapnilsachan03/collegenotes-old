@@ -10,7 +10,6 @@ import AdminNav from "../../components/AdminNav";
 import { changeRole, deleteUser, getAllUsers } from '../../redux/actions/admin';
 
 const Users = () => {
-  document.title = "Users Manager - CollegeNotes";
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
   }, []);
@@ -46,11 +45,11 @@ const Users = () => {
       <title>Users Manager - CollegeNotes</title>
       <meta name='description' content='Manage all users, change their roles and delete profile - Admin only route.'/>
 
-      <meta property='og:title' content='Subjects Manager - CollegeNotes'/>
-      <meta property='og:description' content='Manage all users, change their roles and delete profile - Admin only route.'/>
+      <meta property='og:title' content='Subjects Manager - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='Manage all users, change their roles and delete profile - Admin only route.' key={"og-description"} />
 
-      <meta content='Subjects Manager - CollegeNotes' name='twitter:title'/>
-      <meta content='Manage all users, change their roles and delete profile - Admin only route.' name='twitter:description'/>
+      <meta content='Subjects Manager - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='Manage all users, change their roles and delete profile - Admin only route.' name='twitter:description' key={"twitter-description"} />
     </Head>
 
     <AdminNav />

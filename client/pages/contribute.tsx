@@ -15,11 +15,11 @@ const Contribute = () => {
         <title>Contribute to CollegeNotes</title>
         <meta name='description' content='Contribute any notes or study materials to CollegeNotes that you have prepared and think are good enough for other people to study.'/>
 
-        <meta property='og:title' content='Contribute to CollegeNotes'/>
-        <meta property='og:description' content='Contribute any notes or study materials to CollegeNotes that you have prepared and think are good enough for other people to study.'/>
+        <meta property='og:title' content='Contribute to CollegeNotes' key={"og-title"}/>
+        <meta property='og:description' content='Contribute any notes or study materials to CollegeNotes that you have prepared and think are good enough for other people to study.' key={"og-description"}/>
 
-        <meta content='Contribute to CollegeNotes' name='twitter:title'/>
-        <meta content='Contribute any notes or study materials to CollegeNotes that you have prepared and think are good enough for other people to study.' name='twitter:description'/>
+        <meta content='Contribute to CollegeNotes' name='twitter:title' key={"twitter-title"}/>
+        <meta content='Contribute any notes or study materials to CollegeNotes that you have prepared and think are good enough for other people to study.' name='twitter:description' key={"twitter-description"}/>
       </Head>
 
       <Flex height={"94vh"} alignItems={"center"} justifyContent={"center"}>

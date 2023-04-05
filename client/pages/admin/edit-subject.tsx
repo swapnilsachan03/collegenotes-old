@@ -155,11 +155,11 @@ const EditSubject = () => {
       <title>{subject ? `Edit ${subject.title} - CollegeNotes` : `Loading - CollegeNotes`}</title>
       <meta name='description' content='Edit any subject on CollegeNotes.'/>
 
-      <meta property='og:title' content={subject ? `Edit ${subject.title} - CollegeNotes` : `Loading - CollegeNotes`}/>
-      <meta property='og:description' content='Edit any subject on CollegeNotes.'/>
+      <meta property='og:title' content={subject ? `Edit ${subject.title} - CollegeNotes` : `Loading - CollegeNotes`} key={"og-title"} />
+      <meta property='og:description' content='Edit any subject on CollegeNotes.' key={"og-description"} />
 
-      <meta content={subject ? `Edit ${subject.title} - CollegeNotes` : `Loading - CollegeNotes`} name='twitter:title'/>
-      <meta content='Edit any subject on CollegeNotes.' name='twitter:description'/>
+      <meta content={subject ? `Edit ${subject.title} - CollegeNotes` : `Loading - CollegeNotes`} name='twitter:title' key={"twitter-title"} />
+      <meta content='Edit any subject on CollegeNotes.' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <Flex

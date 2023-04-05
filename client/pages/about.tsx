@@ -16,11 +16,11 @@ const About = () => {
       <title>About Us - CollegeNotes</title>
       <meta name='description' content='All about the CollegeNotes platform - the beginning, the journey and the present!'/>
 
-      <meta property='og:title' content='About Us - CollegeNotes'/>
-      <meta property='og:description' content='All about the CollegeNotes platform - the beginning, the journey and the present!'/>
+      <meta property='og:title' content='About Us - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='All about the CollegeNotes platform - the beginning, the journey and the present!' key={"og-description"} />
 
-      <meta content='About Us - CollegeNotes' name='twitter:title'/>
-      <meta content='All about the CollegeNotes platform - the beginning, the journey and the present!' name='twitter:description'/>
+      <meta content='About Us - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='All about the CollegeNotes platform - the beginning, the journey and the present!' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <Flex

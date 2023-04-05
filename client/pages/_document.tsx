@@ -7,11 +7,11 @@ export default function Document() {
     <Html lang="en">
       <Head>
         {/* Favicon integration and manifest */}
-        
+
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/site.webmanifest" />
 
         {/* Basic meta tags */}
 
@@ -24,18 +24,14 @@ export default function Document() {
         <meta property='og:type' content='website'/>
         <meta property='og:url' content='https://www.collegenotes.co.in'/>
         <meta property='og:site_name' content='CollegeNotes'/>
-        <meta property='og:title' content='CollegeNotes - A website for college students'/>
-        <meta property='og:description' content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.'/>
-        <meta property="og:image" content="/images/title-image.png" />
+        <meta property="og:image" content="/images/title-image.jpg" />
 
         {/* Twitter meta tags */}
 
         <meta content='summary_large_image' name='twitter:card'/>
         <meta content='collegenotes.co.in/' name='twitter:domain'/>
         <meta content='https://www.collegenotes.co.in/' name='twitter:url'/>
-        <meta content='CollegeNotes - A website for college students' name='twitter:title'/>
-        <meta content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.' name='twitter:description'/>
-        <meta name="twitter:image" content="/images/title-image.png" />
+        <meta name="twitter:image" content="/images/title-image.jpg" />
 
         {/* Import Google Fonts */}
 

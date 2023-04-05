@@ -44,11 +44,11 @@ const Subject = () => {
       <title>{subject ? `${subject.title} - Notes, PYQs and more on CollegeNotes` : `Loading - CollegeNotes`}</title>
       <meta name='description' content={subject?.seoDescriptioin}/>
 
-      <meta property='og:title' content={subject ? `${subject.title} - Notes, PYQs and more on CollegeNotes` : `Loading - CollegeNotes`}/>
-      <meta property='og:description' content={subject?.seoDescriptioin}/>
+      <meta property='og:title' content={subject ? `${subject.title} - Notes, PYQs and more on CollegeNotes` : `Loading - CollegeNotes`} key={"og-title"}/>
+      <meta property='og:description' content={subject?.seoDescriptioin} key={"og-description"}/>
 
-      <meta content={subject ? `${subject.title} - Notes, PYQs and more on CollegeNotes` : `Loading - CollegeNotes`} name='twitter:title'/>
-      <meta content={subject?.seoDescriptioin} name='twitter:description'/>
+      <meta content={subject ? `${subject.title} - Notes, PYQs and more on CollegeNotes` : `Loading - CollegeNotes`} name='twitter:title' key={"twitter-title"}/>
+      <meta content={subject?.seoDescriptioin} name='twitter:description' key={"twitter-description"}/>
     </Head>
 
     <Flex

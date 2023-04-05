@@ -30,11 +30,11 @@ const Profile = ({ user, isAuthenticated }: any) => {
       <title>Member Profile - CollegeNotes</title>
       <meta name='description' content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.'/>
 
-      <meta property='og:title' content='Member Profile - CollegeNotes'/>
-      <meta property='og:description' content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.'/>
+      <meta property='og:title' content='Member Profile - CollegeNotes' key={"og-title"}/>
+      <meta property='og:description' content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.' key={"og-description"}/>
 
-      <meta content='Member Profile - CollegeNotes' name='twitter:title'/>
-      <meta content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.' name='twitter:description'/>
+      <meta content='Member Profile - CollegeNotes' name='twitter:title' key={"twitter-title"}/>
+      <meta content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.' name='twitter:description' key={"twitter-description"}/>
     </Head>
     <Container minH={"95vh"} maxW={"container.lg"} paddingY={"8"}>
       <Heading

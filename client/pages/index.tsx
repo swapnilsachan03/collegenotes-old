@@ -62,11 +62,11 @@ export default function Home() {
         <title>CollegeNotes - A website for college students</title>
         <meta name='description' content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.'/>
 
-        <meta property='og:title' content='CollegeNotes - A website for college students'/>
-        <meta property='og:description' content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.'/>
+        <meta property='og:title' content='CollegeNotes - A website for college students' key={"og-title"} />
+        <meta property='og:description' content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.' key={"og-description"} />
 
-        <meta content='CollegeNotes - A website for college students' name='twitter:title'/>
-        <meta content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.' name='twitter:description'/>
+        <meta content='CollegeNotes - A website for college students' name='twitter:title' key={"twitter-title"} />
+        <meta content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.' name='twitter:description' key={"twitter-description"} />
       </Head>
 
       <main style={{fontFamily: "Inter"}}>

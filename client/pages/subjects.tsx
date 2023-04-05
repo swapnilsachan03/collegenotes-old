@@ -10,7 +10,6 @@ import ReactGA from "react-ga4";
 import Head from "next/head";
 
 const Subjects = () => {
-  document.title = "CollegeNotes - Subject Browser";
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: document.title })
   }, []);
@@ -42,11 +41,11 @@ const Subjects = () => {
         <title>Subject Browser - CollegeNotes</title>
         <meta name='description' content='Browse and search for all the subjects available on CollegeNotes.'/>
 
-        <meta property='og:title' content='Subject Browser - CollegeNotes'/>
-        <meta property='og:description' content='Browse and search for all the subjects available on CollegeNotes.'/>
+        <meta property='og:title' content='Subject Browser - CollegeNotes' key={"og-title"} />
+        <meta property='og:description' content='Browse and search for all the subjects available on CollegeNotes.' key={"og-description"} />
 
-        <meta content='Subject Browser - CollegeNotes' name='twitter:title'/>
-        <meta content='Browse and search for all the subjects available on CollegeNotes.' name='twitter:description'/>
+        <meta content='Subject Browser - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+        <meta content='Browse and search for all the subjects available on CollegeNotes.' name='twitter:description' key={"twitter-description"} />
       </Head>
 
       <Container minH={"95vh"} maxW={"container.lg"} paddingY="8">

@@ -11,7 +11,6 @@ import ProtectedRoute from '@/others/ProtectedRoute';
 import Head from 'next/head';
 
 const Dashboard = ({ isAdmin }: any) => {
-  document.title = "CollegeNotes Admin Dashboard";
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
   }, []);
@@ -62,11 +61,11 @@ const Dashboard = ({ isAdmin }: any) => {
       <title>CollegeNotes Admin Dashboard</title>
       <meta name='description' content='Admin only dashboard route for CollegeNotes.'/>
 
-      <meta property='og:title' content='CollegeNotes Admin Dashboard'/>
-      <meta property='og:description' content='Admin only dashboard route for CollegeNotes.'/>
+      <meta property='og:title' content='CollegeNotes Admin Dashboard' key={"og-title"} />
+      <meta property='og:description' content='Admin only dashboard route for CollegeNotes.' key={"og-description"} />
 
-      <meta content='CollegeNotes Admin Dashboard' name='twitter:title'/>
-      <meta content='Admin only dashboard route for CollegeNotes.' name='twitter:description'/>
+      <meta content='CollegeNotes Admin Dashboard' name='twitter:title' key={"twitter-title"} />
+      <meta content='Admin only dashboard route for CollegeNotes.' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <AdminNav />

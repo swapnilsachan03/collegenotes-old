@@ -7,18 +7,18 @@ const NotFound = () => {
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
   }, []);
-  
+
   return (
     <>
     <Head>
       <title>404 Not Found - CollegeNotes</title>
       <meta name='description' content='Error 404 - Not Found.'/>
 
-      <meta property='og:title' content='404 Not Found - CollegeNotes'/>
-      <meta property='og:description' content='Error 404 - Not Found'/>
+      <meta property='og:title' content='404 Not Found - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='Error 404 - Not Found' key={"og-description"} />
 
-      <meta content='404 Not Found - CollegeNotes' name='twitter:title'/>
-      <meta content='Error 404 - Not Found' name='twitter:description'/>
+      <meta content='404 Not Found - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='Error 404 - Not Found' name='twitter:description' key={"twitter-description"} />
     </Head>
 
     <VStack height={"95vh"} alignItems={"center"} justifyContent={"center"} gap={"8"}>

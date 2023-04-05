@@ -39,11 +39,11 @@ const ForgotPassword = () => {
       <title>CollegeNotes Account Recovery</title>
       <meta name='description' content='Account recovery for CollegeNotes in case of forgetting password - send a password reset link to your registered email.'/>
 
-      <meta property='og:title' content='CollegeNotes Account Recovery'/>
-      <meta property='og:description' content='Account recovery for CollegeNotes in case of forgetting password - send a password reset link to your registered email.'/>
+      <meta property='og:title' content='CollegeNotes Account Recovery' key={"og-title"} />
+      <meta property='og:description' content='Account recovery for CollegeNotes in case of forgetting password - send a password reset link to your registered email.' key={"og-description"} />
 
-      <meta content='CollegeNotes Account Recovery' name='twitter:title'/>
-      <meta content='Account recovery for CollegeNotes in case of forgetting password - send a password reset link to your registered email.' name='twitter:description'/>
+      <meta content='CollegeNotes Account Recovery' name='twitter:title' key={"twitter-title"} />
+      <meta content='Account recovery for CollegeNotes in case of forgetting password - send a password reset link to your registered email.' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <Container h={"95vh"} width={["90%", "20em"]}>

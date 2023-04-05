@@ -60,11 +60,11 @@ const Subjects = () => {
       <title>Subjects Manager - CollegeNotes</title>
       <meta name='description' content='Manage all subjects and edit subject content - Admin only route.'/>
 
-      <meta property='og:title' content='Subjects Manager - CollegeNotes'/>
-      <meta property='og:description' content='Manage all subjects and edit subject content - Admin only route.'/>
+      <meta property='og:title' content='Subjects Manager - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='Manage all subjects and edit subject content - Admin only route.' key={"og-description"} />
 
-      <meta content='Subjects Manager - CollegeNotes' name='twitter:title'/>
-      <meta content='Manage all subjects and edit subject content - Admin only route.' name='twitter:description'/>
+      <meta content='Subjects Manager - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='Manage all subjects and edit subject content - Admin only route.' name='twitter:description' key={"twitter-description"} />
     </Head>
 
     <AdminNav />

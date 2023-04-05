@@ -118,11 +118,11 @@ const AddSubject = () => {
       <title>Add Subject - CollegeNotes</title>
       <meta name='description' content='Admin only route for adding a subject to CollegeNotes.'/>
 
-      <meta property='og:title' content='Add Subject - CollegeNotes'/>
-      <meta property='og:description' content='Admin only route for adding a subject to CollegeNotes.'/>
+      <meta property='og:title' content='Add Subject - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='Admin only route for adding a subject to CollegeNotes.' key={"og-description"} />
 
-      <meta content='Add Subject - CollegeNotes' name='twitter:title'/>
-      <meta content='Admin only route for adding a subject to CollegeNotes.' name='twitter:description'/>
+      <meta content='Add Subject - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='Admin only route for adding a subject to CollegeNotes.' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <AdminNav/>

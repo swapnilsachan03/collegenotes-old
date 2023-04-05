@@ -31,11 +31,11 @@ const Login = () => {
       <title>Login - CollegeNotes</title>
       <meta name='description' content='Login to CollegeNotes.'/>
 
-      <meta property='og:title' content='Login - CollegeNotes'/>
-      <meta property='og:description' content='Login to CollegeNotes.'/>
+      <meta property='og:title' content='Login - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='Login to CollegeNotes.' key={"og-description"} />
 
-      <meta content='Login - CollegeNotes' name='twitter:title'/>
-      <meta content='Login to CollegeNotes.' name='twitter:description'/>
+      <meta content='Login - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='Login to CollegeNotes.' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <Container h={"95vh"} width={["90%", "20em"]}>
@@ -90,7 +90,7 @@ const Login = () => {
             <Link href="/auth/register">
               <Button variant="link" size={"sm"} colorScheme={"teal"}>
                 Sign Up
-              </Button>
+              </Button> key={"og-title"} 
             </Link>
             {" "} here!
           </Box>

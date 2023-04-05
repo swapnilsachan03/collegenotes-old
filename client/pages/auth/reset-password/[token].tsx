@@ -45,11 +45,11 @@ const ResetPassword = () => {
       <title>Reset Password - CollegeNotes</title>
       <meta name='description' content='Reset CollegeNotes password using the password reset link you received on your registered email.'/>
 
-      <meta property='og:title' content='Reset Password - CollegeNotes'/>
-      <meta property='og:description' content='Reset CollegeNotes password using the password reset link you received on your registered email.'/>
+      <meta property='og:title' content='Reset Password - CollegeNotes' key={"og-title"} />
+      <meta property='og:description' content='Reset CollegeNotes password using the password reset link you received on your registered email.' key={"og-description"} />
 
-      <meta content='Reset Password - CollegeNotes' name='twitter:title'/>
-      <meta content='Reset CollegeNotes password using the password reset link you received on your registered email.' name='twitter:description'/>
+      <meta content='Reset Password - CollegeNotes' name='twitter:title' key={"twitter-title"} />
+      <meta content='Reset CollegeNotes password using the password reset link you received on your registered email.' name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <Container h={"95vh"} width={["90%", "20em"]}>

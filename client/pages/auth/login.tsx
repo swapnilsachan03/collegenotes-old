@@ -7,8 +7,9 @@ import Link from 'next/link';
 import { login } from '../../redux/actions/auth';
 import ProtectedRoute from '@/others/ProtectedRoute';
 import Head from 'next/head';
+import { GetServerSideProps } from 'next';
 
-const Login = () => {
+const Login = ({ headProps }: any) => {
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
   }, [])
@@ -28,14 +29,14 @@ const Login = () => {
   return (
     <>
     <Head>
-      <title>Login - CollegeNotes</title>
-      <meta name='description' content='Login to CollegeNotes.'/>
+      <title>{headProps.title}</title>
+      <meta name='description' content={headProps.description}/>
 
-      <meta property='og:title' content='Login - CollegeNotes' key={"og-title"} />
-      <meta property='og:description' content='Login to CollegeNotes.' key={"og-description"} />
+      <meta property='og:title' content={headProps.title} key={"og-title"} />
+      <meta property='og:description' content={headProps.description} key={"og-description"} />
 
-      <meta content='Login - CollegeNotes' name='twitter:title' key={"twitter-title"} />
-      <meta content='Login to CollegeNotes.' name='twitter:description' key={"twitter-description"} />
+      <meta content={headProps.title} name='twitter:title' key={"twitter-title"} />
+      <meta content={headProps.description} name='twitter:description' key={"twitter-description"} />
     </Head>
     
     <Container h={"95vh"} width={["90%", "20em"]}>
@@ -90,7 +91,7 @@ const Login = () => {
             <Link href="/auth/register">
               <Button variant="link" size={"sm"} colorScheme={"teal"}>
                 Sign Up
-              </Button> key={"og-title"} 
+              </Button>
             </Link>
             {" "} here!
           </Box>
@@ -99,6 +100,19 @@ const Login = () => {
     </Container>
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  const headProps = {
+    title: "Login - CollegeNotes",
+    description: "Login to CollegeNotes."
+  }
+
+  return {
+    props: {
+      headProps: headProps,
+    },
+  }
 }
 
 export default ProtectedRoute(Login, false, false, "/user/profile");

@@ -6,6 +6,16 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        {/* Title and description */}
+
+        <meta name='description' content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.'/>
+
+        <meta property='og:title' content='CollegeNotes - A website for college students' key={"og-title"} />
+        <meta property='og:description' content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.' key={"og-description"} />
+
+        <meta content='CollegeNotes - A website for college students' name='twitter:title' key={"twitter-title"} />
+        <meta content='CollegeNotes is a website made for college students where we provide good quality notes & study materials for free so that you don&apos;t have struggle to find these resources to ace your exams.' name='twitter:description' key={"twitter-description"} />
+
         {/* Favicon integration and manifest */}
 
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -24,14 +34,14 @@ export default function Document() {
         <meta property='og:type' content='website'/>
         <meta property='og:url' content='https://www.collegenotes.co.in'/>
         <meta property='og:site_name' content='CollegeNotes'/>
-        <meta property="og:image" content="/images/title-image.jpg" />
+        <meta property="og:image" content="https://www.collegenotes.co.in/images/title-image.jpg" />
 
         {/* Twitter meta tags */}
 
         <meta content='summary_large_image' name='twitter:card'/>
         <meta content='collegenotes.co.in/' name='twitter:domain'/>
         <meta content='https://www.collegenotes.co.in/' name='twitter:url'/>
-        <meta name="twitter:image" content="/images/title-image.jpg" />
+        <meta name="twitter:image" content="https://www.collegenotes.co.in/images/title-image.jpg" />
 
         {/* Import Google Fonts */}
 

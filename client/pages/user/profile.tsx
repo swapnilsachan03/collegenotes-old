@@ -222,7 +222,6 @@ const Profile = ({ user, isAuthenticated }: any) => {
   )
 }
 
-// export default Profile;
 export default ProtectedRoute(Profile, true, false);
 
 const UpdateProfile = ({user, isEditOpen, onEditClose, onDeleteOpen}: any) => {

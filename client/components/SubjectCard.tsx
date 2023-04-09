@@ -41,6 +41,7 @@ const SubjectCard = ({_id, views, title, imageSrc, id, description, notesCount, 
           fontFamily={"Inter"}
           size={"md"}
           children={title}
+          noOfLines={1}
         />
 
         <Text

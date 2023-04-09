@@ -33,7 +33,6 @@ const schema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
-    minLength: [5, "Minimum 5 keyword ID required"],
     maxLength: [50, "Maximum 50 keyword ID allowed"],
   },
 

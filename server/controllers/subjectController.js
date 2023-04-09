@@ -103,37 +103,48 @@ export const addSubject = catchAsyncError(async (req, res, next) => {
   }
 
   var posterKey = generateFileName(poster.originalname);
+  var iconKey = generateFileName(icon.originalname);
   await uploadFile(poster.buffer, posterKey, poster.mimetype);
 
-  var iconKey = generateFileName(icon.originalname);
-  await sharp(icon.buffer)
-    .resize({
-      width: 200,
-      height: 200,
-      fit: sharp.fit.cover
-    })
-    .toBuffer(async (err, buffer, info) => {
-      if(buffer) await uploadFile(buffer, iconKey, icon.mimetype);
-      if(err) return next(new ErrorHandler("Error while uploading icon.", 500));
-    })
+  await new Promise((resolve, reject) => {
+    sharp(icon.buffer)
+      .resize({
+        width: 200,
+        height: 200,
+        fit: sharp.fit.cover
+      })
+      .toBuffer(async (err, buffer, info) => {
+        if(buffer) {
+          await uploadFile(buffer, iconKey, icon.mimetype);
+          resolve();
+        }
+        if(err) return next(new ErrorHandler("Error while uploading icon.", 500));
+      })
+  });
 
-  await Subject.create({
-    title,
-    description,
-    seoDescription,
-    seoKeywords,
-    id,
-    beforeNotesContent,
-    afterNotesContent,
-    degree,
-    year,
-    poster: {
-      fileName: posterKey
-    },
-    icon: {
-      fileName: iconKey
-    },
-  })
+  try {
+    await Subject.create({
+      title,
+      description,
+      seoDescription,
+      seoKeywords,
+      id,
+      beforeNotesContent,
+      afterNotesContent,
+      degree,
+      year,
+      poster: {
+        fileName: posterKey
+      },
+      icon: {
+        fileName: iconKey
+      },
+    })
+  } catch (error) {
+    await deleteFile(posterKey);
+    await deleteFile(iconKey);
+    return next(new ErrorHandler(error._message, 500));
+  }
 
   res
     .status(200)

@@ -57,7 +57,7 @@ const ProfileNotesCard = ({_id, views, title, id, contributor, institution}: any
 
       <Heading
         as={"h4"}
-        noOfLines={[2, 1]}
+        noOfLines={1}
         marginTop={"1"}
         textAlign={"left"}
         fontFamily={"Inter"}

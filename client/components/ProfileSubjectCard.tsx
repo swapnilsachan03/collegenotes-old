@@ -57,6 +57,7 @@ const ProfileSubjectCard = ({_id, views, title, id, description, notesCount}: an
 
       <Heading
         marginTop={"1"}
+        noOfLines={1}
         textAlign={"left"}
         fontFamily={"Inter"}
         size={"md"}

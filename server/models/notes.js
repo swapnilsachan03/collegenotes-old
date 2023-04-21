@@ -16,7 +16,6 @@ const schema = new mongoose.Schema({
   description: {
     type: String,
     default: "No description has been provided for these notes.",
-    maxLength: [250, "Description must be at max 250 characters long"],
   },
 
   id: {

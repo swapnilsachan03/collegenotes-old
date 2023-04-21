@@ -42,14 +42,14 @@ const Footer = () => {
             <HStack gap={["0", "10"]}>
               <VStack paddingTop={"3"} alignItems={"flex-start"} width={["50%", "unset"]}>
                 <Link to={"https://www.collegenotes.co.in/contribute"} className={styles.footerLinks}>Contribute</Link>
-                <Link to={"https://www.collegenotes.co.in/subjects"} reloadDocument={true} className={styles.footerLinks}>All Subjects</Link>
                 <Link to={"https://www.collegenotes.co.in/about"} className={styles.footerLinks}>About Us</Link>
+                <Link to={"https://www.collegenotes.co.in/privacy-policy"} reloadDocument={true} className={styles.footerLinks}>Privacy Policy</Link>
               </VStack>
 
               <VStack paddingTop={"3"} alignItems={"flex-start"} width={["50%", "unset"]}>
+                <Link to={"https://www.collegenotes.co.in/terms-and-conditions"} className={styles.footerLinks}>T&Cs</Link>
+                <Link to={"https://www.collegenotes.co.in/contact"} className={styles.footerLinks}>Contact Us</Link>
                 <Link to={"https://www.collegenotes.co.in/donate"} className={styles.footerLinks}>Donate</Link>
-                <a href={"https://old.collegenotes.co.in/"} target={"_blank"} rel={"noreferrer"} className={styles.footerLinks}>Old Site</a>
-                <Link to={"https://www.collegenotes.co.in"} className={styles.footerLinks}>Tweet This!</Link>
               </VStack>
             </HStack>
           </Stack>

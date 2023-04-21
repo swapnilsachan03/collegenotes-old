@@ -66,7 +66,7 @@ const EditSubject = () => {
 
     ReactGA.send({ hitType: "pageview", page: document.title + window.location.pathname });
     // eslint-disable-next-line
-  }, [subject?.title]);
+  }, [subject?.title, subject?.notes.length]);
 
   const { loading: adminLoading, error: adminError, message: adminMessage } = useSelector((state: any) => state.admin);
 

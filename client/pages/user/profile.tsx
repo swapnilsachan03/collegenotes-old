@@ -36,6 +36,7 @@ const Profile = ({ user, isAuthenticated }: any) => {
       <meta content='Member Profile - CollegeNotes' name='twitter:title' key={"twitter-title"}/>
       <meta content='CollegeNotes Member Profile - one place to manage you favorited subjects, bookmarked notes and more.' name='twitter:description' key={"twitter-description"}/>
     </Head>
+
     <Container minH={"95vh"} maxW={"container.lg"} paddingY={"8"}>
       <Heading
         as={"h1"}

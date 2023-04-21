@@ -42,14 +42,14 @@ const Footer = () => {
             <HStack gap={["0", "10"]}>
               <VStack paddingTop={"3"} alignItems={"flex-start"} width={["50%", "unset"]}>
                 <Link href={"/contribute"} className={styles.footerLinks}>Contribute</Link>
-                <Link href={"/subjects"} className={styles.footerLinks}>All Subjects</Link>
                 <Link href={"/about"} className={styles.footerLinks}>About Us</Link>
+                <Link href={"/privacy-policy"} className={styles.footerLinks}>Privacy Policy</Link>
               </VStack>
 
               <VStack paddingTop={"3"} alignItems={"flex-start"} width={["50%", "unset"]}>
+                <Link href={"/terms-and-conditions"} className={styles.footerLinks}>T&Cs</Link>
+                <Link href={"/contact"} className={styles.footerLinks}>Contact Us</Link>
                 <Link href={"/donate"} className={styles.footerLinks}>Donate</Link>
-                <Link href={"/"} className={styles.footerLinks}>Tweet This!</Link>
-                <a href={"https://old.collegenotes.co.in/"} target={"_blank"} rel={"noreferrer"} className={styles.footerLinks}>Old Site</a>
               </VStack>
             </HStack>
           </Stack>

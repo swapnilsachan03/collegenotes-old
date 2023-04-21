@@ -172,23 +172,28 @@ export const addNotes = catchAsyncError(async (req, res, next) => {
   var documentName = generateFileName(document.originalname);
   await uploadFile(document.buffer, documentName, document.mimetype);
 
-  await Notes.create ({
-    title,
-    subject: subject.title,
-    description,
-    id,
-    contributor,
-    contributorSocial,
-    institution,
-    document: {
-      documentKey: documentName
-    },
-  })
-  .then(async (result) => {
-    subject.notes.push(result._id);
-    subject.numOfNotes = subject.notes.length;
-    await subject.save();
-  })
+  try {
+    await Notes.create ({
+      title,
+      subject: subject.title,
+      description,
+      id,
+      contributor,
+      contributorSocial,
+      institution,
+      document: {
+        documentKey: documentName
+      },
+    })
+    .then(async (result) => {
+      subject.notes.push(result._id);
+      subject.numOfNotes = subject.notes.length;
+      await subject.save();
+    })
+  } catch (error) {
+    await deleteFile(documentName);
+    return next(new ErrorHandler("Error while uploading notes.", 500));
+  }
 
   res
     .status(200)

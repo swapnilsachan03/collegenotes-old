@@ -33,32 +33,41 @@ export const register = catchAsyncError(async (req, res, next) => {
 
   if(file) {
     imgName = generateFileName(file.originalname);
-    await sharp(file.buffer)
-      .resize({
-        width: 500,
-        height: 500,
-        fit: sharp.fit.cover
-      })
-      .toBuffer(async (err, buffer, info) => {
-        if(buffer) {
-          await uploadFile(buffer, imgName, file.mimetype);
-        }
 
-        else {
-          return next(new ErrorHandler("Error while uploading image.", 500));
-        }
-      })
+    await new Promise((resolve, reject) => {
+      sharp(file.buffer)
+        .resize({
+          width: 500,
+          height: 500,
+          fit: sharp.fit.cover
+        })
+        .toBuffer(async (err, buffer, info) => {
+          if(buffer) {
+            await uploadFile(buffer, imgName, file.mimetype);
+            resolve();
+          }
+  
+          else {
+            return next(new ErrorHandler("Error while uploading image.", 500));
+          }
+        })
+    })
   }
 
-  user = await User.create({
-    name,
-    email,
-    password,
-    avatar: {
-      imgName,
-      url: await getObjectSignedUrl(imgName)
-    }
-  });
+  try {
+    user = await User.create({
+      name,
+      email,
+      password,
+      avatar: {
+        imgName,
+        url: await getObjectSignedUrl(imgName)
+      }
+    })
+  } catch (error) {
+    if(imgName) await deleteFile(imgName);
+    return next(new ErrorHandler(error._message, 500));
+  }
 
   sendToken(res, user, "Registered successfully!", 201)
 })
@@ -193,8 +202,6 @@ export const updateProfile = catchAsyncError(async (req, res, next) => {
   const { name, degree, year } = req.body;
   const file = req.file;
 
-  // && will be replaced by || after testing
-
   if(!name && !degree && !year && !file) {
     return next(new ErrorHandler("Please enter at least one field.", 400))
   }
@@ -203,19 +210,24 @@ export const updateProfile = catchAsyncError(async (req, res, next) => {
     const imgName = generateFileName(file.originalname);
     await deleteFile(user.avatar.imgName);
 
-    await sharp(file.buffer)
-      .resize({
-        width: 500,
-        height: 500,
-        fit: sharp.fit.cover
-      })
+    await new Promise((resolve, reject) => {
+      sharp(file.buffer)
+        .resize({
+          width: 500,
+          height: 500,
+          fit: sharp.fit.cover
+        })
+  
+        .toBuffer(async (err, buffer, info) => {
+          if(buffer) {
+            await uploadFile(buffer, imgName, file.mimetype);
+            user.avatar.imgName = imgName;
+            resolve();
+          }
 
-      .toBuffer(async (err, buffer, info) => {
-        if(buffer) await uploadFile(buffer, imgName, file.mimetype);
-        if(err) return next(new ErrorHandler("Error while uploading image.", 500));
-      })
-
-    user.avatar.imgName = imgName;
+          if(err) return next(new ErrorHandler("Error while uploading image.", 500));
+        })
+    })
   }
 
   if(name) user.name = name

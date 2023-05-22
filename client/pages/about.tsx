@@ -109,37 +109,37 @@ const About = () => {
               />
             </Flex>
 
-            <VStack width={["", "", "75%"]}>
+            <VStack width={["", "", "75%"]} alignItems={"flex-start"}>
               <Text fontFamily={"Inter"} textAlign={"justify"}>
                 When I started out with the development of this website, I planned on using NextJS and Tailwind CSS for the frontend and NodeJS for the backend. But I didn't know much about these technologies at that time, so as I started moving forward, I realized that I was making a lot of mistakes and the code was getting very messy. Owing to that, I made changes to the frameworks and libraries that I was going to use and settled with this tech stack: <br/><br/>
-
-                <UnorderedList listStyleType={"none"} spacing={"1"} marginInlineStart={"0"}>
-                  <ListItem>
-                    <ListIcon as={RxArrowRight} />
-                    ReactJS, React Router for frontend development
-                  </ListItem>
-                  
-                  <ListItem>
-                    <ListIcon as={RxArrowRight} />
-                    Chakra UI for styling
-                  </ListItem>
-                  
-                  <ListItem>
-                    <ListIcon as={RxArrowRight} />
-                    ExpressJS with NodeJS for backend development
-                  </ListItem>
-                  
-                  <ListItem>
-                    <ListIcon as={RxArrowRight} />
-                    MongoDB with Mongoose for database management
-                  </ListItem>
-                  
-                  <ListItem>
-                    <ListIcon as={RxArrowRight} />
-                    Various JS libraries such as React Quill, JWT, Bcrypt, Sharp etc.
-                  </ListItem>
-                </UnorderedList>
               </Text>
+
+              <UnorderedList listStyleType={"none"} spacing={"1"} marginInlineStart={"0"} fontFamily={"Inter"}>
+                <ListItem>
+                  <ListIcon as={RxArrowRight} />
+                  ReactJS, React Router for frontend development
+                </ListItem>
+
+                <ListItem>
+                  <ListIcon as={RxArrowRight} />
+                  Chakra UI for styling
+                </ListItem>
+                
+                <ListItem>
+                  <ListIcon as={RxArrowRight} />
+                  ExpressJS with NodeJS for backend development
+                </ListItem>
+                
+                <ListItem>
+                  <ListIcon as={RxArrowRight} />
+                  MongoDB with Mongoose for database management
+                </ListItem>
+                
+                <ListItem>
+                  <ListIcon as={RxArrowRight} />
+                  Various JS libraries such as React Quill, JWT, Bcrypt, Sharp etc.
+                </ListItem>
+              </UnorderedList>
             </VStack>
           </Flex>
         </VStack>

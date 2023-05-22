@@ -42,8 +42,8 @@ export const getAllSubjects = catchAsyncError(async (req, res, next) => {
 })
 
 export const getSubjectContent = catchAsyncError(async (req, res, next) => {
-  const subject = await Subject.findOne({id: req.params.id}).populate("notes");
-  
+  const subject = await Subject.findOne({id: req.params.id}).populate("notes", "-document -__v");
+
   if(!subject) {
     return next(new ErrorHandler("Invalid subject ID!", 404))
   }
